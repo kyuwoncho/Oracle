@@ -1,0 +1,8750 @@
+SQL> SET MARKUP HTML ON
+SQL&gt; SET ECHO ON
+<br>
+SQL&gt; SET PAGESIZE 15
+<br>
+SQL&gt; @C:\Users\ryu_b\Desktop\OracleXE184_Win64\SQL_study_ch4_ch5.sql
+<br>
+SQL&gt; --4장
+<br>
+SQL&gt; --1. 직무별 급여 평균을 출력하세요
+<br>
+SQL&gt; select job_id, avg(salary) as average
+<br>
+  2  from employees
+<br>
+  3  group by job_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+AVERAGE
+</th>
+</tr>
+<tr>
+<td>
+AD_VP
+</td>
+<td align="right">
+     17000
+</td>
+</tr>
+<tr>
+<td>
+FI_ACCOUNT
+</td>
+<td align="right">
+      7920
+</td>
+</tr>
+<tr>
+<td>
+PU_CLERK
+</td>
+<td align="right">
+      2780
+</td>
+</tr>
+<tr>
+<td>
+SH_CLERK
+</td>
+<td align="right">
+      3215
+</td>
+</tr>
+<tr>
+<td>
+HR_REP
+</td>
+<td align="right">
+      6500
+</td>
+</tr>
+<tr>
+<td>
+PU_MAN
+</td>
+<td align="right">
+     11000
+</td>
+</tr>
+<tr>
+<td>
+AC_MGR
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<td>
+ST_CLERK
+</td>
+<td align="right">
+      2785
+</td>
+</tr>
+<tr>
+<td>
+AD_ASST
+</td>
+<td align="right">
+      4400
+</td>
+</tr>
+<tr>
+<td>
+IT_PROG
+</td>
+<td align="right">
+      5760
+</td>
+</tr>
+<tr>
+<td>
+SA_MAN
+</td>
+<td align="right">
+     12200
+</td>
+</tr>
+<tr>
+<td>
+AC_ACCOUNT
+</td>
+<td align="right">
+      8300
+</td>
+</tr>
+<tr>
+<td>
+FI_MGR
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<td>
+ST_MAN
+</td>
+<td align="right">
+      7280
+</td>
+</tr>
+<tr>
+<td>
+AD_PRES
+</td>
+<td align="right">
+     24000
+</td>
+</tr>
+<tr>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+AVERAGE
+</th>
+</tr>
+<tr>
+<td>
+MK_MAN
+</td>
+<td align="right">
+     13000
+</td>
+</tr>
+<tr>
+<td>
+SA_REP
+</td>
+<td align="right">
+      8350
+</td>
+</tr>
+<tr>
+<td>
+MK_REP
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<td>
+PR_REP
+</td>
+<td align="right">
+     10000
+</td>
+</tr>
+</table>
+<p>
+
+19 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --2.부서별 사원의 수를 출력하세요.
+<br>
+SQL&gt; select department_id,count(*)
+<br>
+  2  from employees
+<br>
+  3  group by department_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td align="right">
+        45
+</td>
+</tr>
+<tr>
+<td align="right">
+        40
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td align="right">
+        70
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+&nbsp;
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        10
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td align="right">
+        34
+</td>
+</tr>
+</table>
+<p>
+
+12 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --3.부서별, 직무별 사원의 수를 각각 출력하세요.
+<br>
+SQL&gt; select department_id,job_id,count(*)
+<br>
+  2  from employees
+<br>
+  3  group by department_id,job_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td>
+AD_VP
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+FI_MGR
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+SA_REP
+</td>
+<td align="right">
+        29
+</td>
+</tr>
+<tr>
+<td align="right">
+&nbsp;
+</td>
+<td>
+SA_REP
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td>
+AD_PRES
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td>
+MK_REP
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td>
+AC_MGR
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+IT_PROG
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+PU_CLERK
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+SA_MAN
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+SH_CLERK
+</td>
+<td align="right">
+        20
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td>
+MK_MAN
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+PU_MAN
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+ST_CLERK
+</td>
+<td align="right">
+        20
+</td>
+</tr>
+<tr>
+<td align="right">
+        70
+</td>
+<td>
+PR_REP
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td>
+AC_ACCOUNT
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+ST_MAN
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+FI_ACCOUNT
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+        10
+</td>
+<td>
+AD_ASST
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td align="right">
+        40
+</td>
+<td>
+HR_REP
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+</table>
+<p>
+
+20 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --4.부서별 급여 표준편차를 출력하세요.
+<br>
+SQL&gt; select department_id,round(stddev(salary),2)
+<br>
+  2  from employees
+<br>
+  3  group by department_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+ROUND(STDDEV(SALARY),2)
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td align="right">
+   1488.01
+</td>
+</tr>
+<tr>
+<td align="right">
+        40
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td align="right">
+   2621.95
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td align="right">
+   4041.45
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td align="right">
+   3362.59
+</td>
+</tr>
+<tr>
+<td align="right">
+        70
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+&nbsp;
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+        10
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td align="right">
+   4949.75
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td align="right">
+   1925.62
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td align="right">
+   1804.13
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td align="right">
+   2033.68
+</td>
+</tr>
+</table>
+<p>
+
+12 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --5.사원의 수가 4명이상인 부서의 아이디와 사원의 수를 출력하세요.
+<br>
+SQL&gt; select department_id,count(*)
+<br>
+  2  from employees
+<br>
+  3  group by department_id
+<br>
+  4  having count(department_id)&gt;=4;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td align="right">
+        45
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td align="right">
+        34
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; --6. 50번부서의 직무별 사원의 수를 출력하세요.
+<br>
+SQL&gt; select job_id,count(*)
+<br>
+  2  from employees
+<br>
+  3  where department_id = '50'
+<br>
+  4  group by job_id;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+SH_CLERK
+</td>
+<td align="right">
+        20
+</td>
+</tr>
+<tr>
+<td>
+ST_CLERK
+</td>
+<td align="right">
+        20
+</td>
+</tr>
+<tr>
+<td>
+ST_MAN
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; --7. 50번 부서에서 직무별 사원의 수가 10명이하인 직무아이디와 사원의 수를 출력하세요.
+<br>
+SQL&gt; select job_id,count(*)
+<br>
+  2  from employees
+<br>
+  3  where department_id='50'
+<br>
+  4  group by job_id
+<br>
+  5  having count(job_id)&lt;10;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+JOB_ID
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+ST_MAN
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; --8.사원목록 중 입사년도 별로 사원들의 급여 평균과 사원수를 출력하세요.
+<br>
+SQL&gt; --조건1) 입사년도가 빠른 순으로 정렬하세요.
+<br>
+SQL&gt; select to_char(hire_date,'YYYY') as 입사년도, round(avg(salary),0), count(*)
+<br>
+  2  from employees
+<br>
+  3  group by to_char(hire_date,'YYYY')
+<br>
+  4  order by 1;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+입사년도
+</th>
+<th scope="col">
+ROUND(AVG(SALARY),0)
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td align="right">
+      9831
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td align="right">
+      7750
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td align="right">
+      6824
+</td>
+<td align="right">
+        29
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td align="right">
+      5046
+</td>
+<td align="right">
+        24
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td align="right">
+      4995
+</td>
+<td align="right">
+        19
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td align="right">
+      5382
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+</table>
+<p>
+
+8 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; [다시풀기]
+<br>
+SP2-0042: 알 수 없는 명령어 &quot;[다시풀기]&quot; - 나머지 줄 무시.
+<br>
+SQL&gt; --9. 사원목록 중 입사년도와 입사월 별로 사원들의 급여 평균과 사원수를 출력하세요.
+<br>
+SQL&gt; --조건1) 입사년도가 빠른 순으로 정렬한 이후, 입사년도가 같다면 입사월을 기준으로 정렬하세요.
+<br>
+SQL&gt; --조건2) 입사년도를 기준으로 급여평균과 사원수의 총 합계를 구하세요.
+<br>
+SQL&gt; select to_char(hire_date,'YYYY') as hire_year,to_char(hire_date,'MM') as hire_month,
+<br>
+  2  round(avg(salary),0) as avgerage,count(*)
+<br>
+  3  from employees
+<br>
+  4  group by rollup(to_char(hire_date,'YYYY'), to_char(hire_date,'MM'))
+<br>
+  5  order by 1;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+01
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+06
+</td>
+<td align="right">
+      9202
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+08
+</td>
+<td align="right">
+     10504
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+12
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      9831
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+05
+</td>
+<td align="right">
+      5500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+06
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+09
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+10
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      7750
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7100
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+02
+</td>
+<td align="right">
+      8500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+03
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+05
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+07
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+08
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+10
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+01
+</td>
+<td align="right">
+      8867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+03
+</td>
+<td align="right">
+      8950
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+04
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+06
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+08
+</td>
+<td align="right">
+      5475
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+09
+</td>
+<td align="right">
+     10967
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+10
+</td>
+<td align="right">
+      4167
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+11
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+12
+</td>
+<td align="right">
+      5200
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      6824
+</td>
+<td align="right">
+        29
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7267
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+03
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+04
+</td>
+<td align="right">
+      4667
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+05
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+07
+</td>
+<td align="right">
+      2867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+09
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+11
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+12
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      5046
+</td>
+<td align="right">
+        24
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+01
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+02
+</td>
+<td align="right">
+      4867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+03
+</td>
+<td align="right">
+      6533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+04
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+05
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+06
+</td>
+<td align="right">
+      2550
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+10
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+11
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+12
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      4995
+</td>
+<td align="right">
+        19
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+01
+</td>
+<td align="right">
+      6625
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+03
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+04
+</td>
+<td align="right">
+      6150
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      5382
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+&nbsp;
+</td>
+<td align="right">
+      6462
+</td>
+<td align="right">
+       107
+</td>
+</tr>
+</table>
+<p>
+
+62 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --10. 사원목록 중 입사년도와 입사월 별로 사원들의 급여 평균과 사원수를 출력하세요.
+<br>
+SQL&gt; --조건1) 입사년도가 빠른 순으로 정렬한 이후, 입사년도가 같다면 입사월을 기준으로 정렬하세요.
+<br>
+SQL&gt; --조건2) 입사년도와 입사월을 기준으로 급여평균과 사원수의 총 합계를 구하세요.
+<br>
+SQL&gt; --단, 입사년도의 합계는 ‘합계’, 입사월의 합계는 ‘합계’, 입사월의 전체 합계는 ‘합계’로 출력하세요.
+<br>
+SQL&gt; select to_char(hire_date,'YYYY') as hire_year,
+<br>
+  2  decode(grouping_id(to_char(hire_date,'MM')),1,'소계',to_char(hire_date,'MM')) as hire_month,
+<br>
+  3  round(avg(salary),0) as avgerage,count(*)
+<br>
+  4  from employees
+<br>
+  5  group by rollup(to_char(hire_date,'YYYY'), to_char(hire_date,'MM'))
+<br>
+  6  order by 1;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+01
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+소계
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+06
+</td>
+<td align="right">
+      9202
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+08
+</td>
+<td align="right">
+     10504
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+12
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      9831
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+05
+</td>
+<td align="right">
+      5500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+06
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+09
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+10
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      7750
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7100
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+02
+</td>
+<td align="right">
+      8500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+03
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+05
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+07
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+08
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+10
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+01
+</td>
+<td align="right">
+      8867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+03
+</td>
+<td align="right">
+      8950
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+04
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+06
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+08
+</td>
+<td align="right">
+      5475
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+09
+</td>
+<td align="right">
+     10967
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+10
+</td>
+<td align="right">
+      4167
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+11
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+12
+</td>
+<td align="right">
+      5200
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      6824
+</td>
+<td align="right">
+        29
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7267
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+03
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+04
+</td>
+<td align="right">
+      4667
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+05
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+07
+</td>
+<td align="right">
+      2867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+09
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+11
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+12
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      5046
+</td>
+<td align="right">
+        24
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+01
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+02
+</td>
+<td align="right">
+      4867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+03
+</td>
+<td align="right">
+      6533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+04
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+05
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+06
+</td>
+<td align="right">
+      2550
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+10
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+11
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+12
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      4995
+</td>
+<td align="right">
+        19
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+01
+</td>
+<td align="right">
+      6625
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+03
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+04
+</td>
+<td align="right">
+      6150
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEA
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      5382
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+<tr>
+<td>
+&nbsp;
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      6462
+</td>
+<td align="right">
+       107
+</td>
+</tr>
+</table>
+<p>
+
+62 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; 
+<br>
+SQL&gt; --11. 사원목록 중 입사년도와 입사월 별로 사원들의 급여 평균과 사원수를 출력하세요
+<br>
+SQL&gt; --조건1) 입사년도가 빠른 순으로 정렬한 이후, 입사년도가 같다면 입사월을 기준으로 정렬하세요.
+<br>
+SQL&gt; --조건2) 입사년도와 입사월을 기준으로 급여평균과 사원수의 총 합계를 구하세요.
+<br>
+SQL&gt; --단, 입사년도의 합계는 ‘소계’, 입사월의 합계는 ‘합계’로 출력하세요.
+<br>
+SQL&gt; --조건3) 2개 이상의 열에 대한 집계를 확인하는 GROUPING_ID 값을 출력하세요. 이 열의 이름은 ‘GID’입니다.
+<br>
+SQL&gt; select NVL(to_char(hire_date,'YYYY'),decode(grouping(to_char(hire_date,'YYYY')),1,'합계')) as hire_year,
+<br>
+  2  NVL(to_char(hire_date,'MM'),decode(grouping(to_char(hire_date,'MM')),1,'소계')) as hire_month,
+<br>
+  3  round(avg(salary),0) as avgerage,count(*)
+<br>
+  4  from employees
+<br>
+  5  group by cube(to_char(hire_date,'YYYY'), to_char(hire_date,'MM'))
+<br>
+  6  order by 1,2;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+HIRE_YEAR
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+01
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2001
+</td>
+<td>
+소계
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+06
+</td>
+<td align="right">
+      9202
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+08
+</td>
+<td align="right">
+     10504
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+12
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2002
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      9831
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+05
+</td>
+<td align="right">
+      5500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+06
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+09
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+10
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2003
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      7750
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7100
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+02
+</td>
+<td align="right">
+      8500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+03
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEAR
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+05
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+07
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+08
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+10
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2004
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+        10
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+01
+</td>
+<td align="right">
+      8867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+03
+</td>
+<td align="right">
+      8950
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+04
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+06
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+08
+</td>
+<td align="right">
+      5475
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+09
+</td>
+<td align="right">
+     10967
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+10
+</td>
+<td align="right">
+      4167
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEAR
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+11
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+12
+</td>
+<td align="right">
+      5200
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2005
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      6824
+</td>
+<td align="right">
+        29
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7267
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+03
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+04
+</td>
+<td align="right">
+      4667
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+05
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+06
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+07
+</td>
+<td align="right">
+      2867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+09
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+11
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+12
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2006
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      5046
+</td>
+<td align="right">
+        24
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEAR
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+01
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+02
+</td>
+<td align="right">
+      4867
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+03
+</td>
+<td align="right">
+      6533
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+04
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+05
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+06
+</td>
+<td align="right">
+      2550
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+08
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+10
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+11
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+12
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2007
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      4995
+</td>
+<td align="right">
+        19
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+01
+</td>
+<td align="right">
+      6625
+</td>
+<td align="right">
+         4
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+02
+</td>
+<td align="right">
+      3933
+</td>
+<td align="right">
+         3
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+03
+</td>
+<td align="right">
+      4300
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+04
+</td>
+<td align="right">
+      6150
+</td>
+<td align="right">
+         2
+</td>
+</tr>
+<tr>
+<th scope="col">
+HIRE_YEAR
+</th>
+<th scope="col">
+HIRE_MONTH
+</th>
+<th scope="col">
+AVGERAGE
+</th>
+<th scope="col">
+COUNT(*)
+</th>
+</tr>
+<tr>
+<td>
+2008
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      5382
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+01
+</td>
+<td align="right">
+      7750
+</td>
+<td align="right">
+        14
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+02
+</td>
+<td align="right">
+      4662
+</td>
+<td align="right">
+        13
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+03
+</td>
+<td align="right">
+      7553
+</td>
+<td align="right">
+        17
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+04
+</td>
+<td align="right">
+      5229
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+05
+</td>
+<td align="right">
+      6333
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+06
+</td>
+<td align="right">
+      7383
+</td>
+<td align="right">
+        11
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+07
+</td>
+<td align="right">
+      3743
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+08
+</td>
+<td align="right">
+      6368
+</td>
+<td align="right">
+         9
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+09
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+10
+</td>
+<td align="right">
+      6833
+</td>
+<td align="right">
+         6
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+11
+</td>
+<td align="right">
+      6580
+</td>
+<td align="right">
+         5
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+12
+</td>
+<td align="right">
+      5814
+</td>
+<td align="right">
+         7
+</td>
+</tr>
+<tr>
+<td>
+합계
+</td>
+<td>
+소계
+</td>
+<td align="right">
+      6462
+</td>
+<td align="right">
+       107
+</td>
+</tr>
+</table>
+<p>
+
+74 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --5장.
+<br>
+SQL&gt; -- 1. 모든 사원의 부서번호, 이름, 급여, 부서별 급여 순위를 출력하세요. 중복순위 사원이 있으면 차순위는 없습니다.
+<br>
+SQL&gt; -- 이 결과에 이전 순위 사원의 급여를 추가하여 출력하세요.
+<br>
+SQL&gt; select department_id,first_name,salary,
+<br>
+  2  RANK() over(partition by department_id order by salary DESC) sal_rank,
+<br>
+  3  LAG(salary,1,0) over (partition by department_id order by salary DESC) as prev_salary,
+<br>
+  4  first_value(salary) OVER (PARTITION     BY department_id order BY salary DESC ROWs 1 PRECEDING) AS      prev_salary2
+<br>
+  5  from employees
+<br>
+  6  order by 1;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        10
+</td>
+<td>
+Jennifer
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+      4400
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td>
+Michael
+</td>
+<td align="right">
+     13000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     13000
+</td>
+</tr>
+<tr>
+<td align="right">
+        20
+</td>
+<td>
+Pat
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     13000
+</td>
+<td align="right">
+     13000
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Den
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     11000
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Alexander
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     11000
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Shelli
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      3100
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Sigal
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+         4
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+      2900
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Guy
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      2800
+</td>
+</tr>
+<tr>
+<td align="right">
+        30
+</td>
+<td>
+Karen
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+         6
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      2600
+</td>
+</tr>
+<tr>
+<td align="right">
+        40
+</td>
+<td>
+Susan
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+      6500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Adam
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+      8200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Matthew
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      8200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Payam
+</td>
+<td align="right">
+      7900
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+      8000
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Shanta
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         4
+</td>
+<td align="right">
+      7900
+</td>
+<td align="right">
+      7900
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Kevin
+</td>
+<td align="right">
+      5800
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+      6500
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Nandita
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+         6
+</td>
+<td align="right">
+      5800
+</td>
+<td align="right">
+      5800
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Alexis
+</td>
+<td align="right">
+      4100
+</td>
+<td align="right">
+         7
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      4200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Sarah
+</td>
+<td align="right">
+      4000
+</td>
+<td align="right">
+         8
+</td>
+<td align="right">
+      4100
+</td>
+<td align="right">
+      4100
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Britney
+</td>
+<td align="right">
+      3900
+</td>
+<td align="right">
+         9
+</td>
+<td align="right">
+      4000
+</td>
+<td align="right">
+      4000
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Kelly
+</td>
+<td align="right">
+      3800
+</td>
+<td align="right">
+        10
+</td>
+<td align="right">
+      3900
+</td>
+<td align="right">
+      3900
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Jennifer
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+        11
+</td>
+<td align="right">
+      3800
+</td>
+<td align="right">
+      3800
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Renske
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+        11
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+      3600
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Trenna
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+        13
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+      3600
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Julia
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+        14
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+      3500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Jason
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+        15
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+      3400
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Laura
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+        15
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+      3300
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Winston
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+        17
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+      3300
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Julia
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+        17
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      3200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Stephen
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+        17
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      3200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Samuel
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+        17
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      3200
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Curtis
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      3200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Alana
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      3100
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Jean
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      3100
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Anthony
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+        24
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      3100
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Kevin
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+        24
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+      3000
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Michael
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+        26
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+      3000
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Timothy
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+        26
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+      2900
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Mozhe
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+        28
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+      2900
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Vance
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+        28
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      2800
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Girard
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+        28
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      2800
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Irene
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+        31
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      2800
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+John
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+        31
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+      2700
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Randall
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+        33
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+      2700
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Donald
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+        33
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      2600
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Douglas
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+        33
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      2600
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Randall
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+        36
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      2600
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+James
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+        36
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Martha
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+        36
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Joshua
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+        36
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Peter
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+        36
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Ki
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+        41
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+James
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+        41
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+      2400
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Steven
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+        43
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+      2400
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+Hazel
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+        43
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+      2200
+</td>
+</tr>
+<tr>
+<td align="right">
+        50
+</td>
+<td>
+TJ
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+        45
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+      2200
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+Alexander
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+      9000
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+Bruce
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      9000
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+David
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+Valli
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+      4800
+</td>
+</tr>
+<tr>
+<td align="right">
+        60
+</td>
+<td>
+Diana
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+      4800
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        70
+</td>
+<td>
+Hermann
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     10000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+John
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     14000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Karen
+</td>
+<td align="right">
+     13500
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+     14000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Alberto
+</td>
+<td align="right">
+     12000
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+     13500
+</td>
+<td align="right">
+     13500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Lisa
+</td>
+<td align="right">
+     11500
+</td>
+<td align="right">
+         4
+</td>
+<td align="right">
+     12000
+</td>
+<td align="right">
+     12000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Ellen
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+     11500
+</td>
+<td align="right">
+     11500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Gerald
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     11000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Eleni
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+         7
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     11000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Clara
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+         7
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+     10500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Harrison
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+         9
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+     10500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Peter
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+         9
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     10000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Janette
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+         9
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     10000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Tayler
+</td>
+<td align="right">
+      9600
+</td>
+<td align="right">
+        12
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     10000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+David
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+        13
+</td>
+<td align="right">
+      9600
+</td>
+<td align="right">
+      9600
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Patrick
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+        13
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+      9500
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Danielle
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+        13
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+      9500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Peter
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+        16
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+      9500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Allan
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+        16
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      9000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Alyssa
+</td>
+<td align="right">
+      8800
+</td>
+<td align="right">
+        18
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      9000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Jonathon
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+        19
+</td>
+<td align="right">
+      8800
+</td>
+<td align="right">
+      8800
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Jack
+</td>
+<td align="right">
+      8400
+</td>
+<td align="right">
+        20
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+      8600
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Christopher
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+      8400
+</td>
+<td align="right">
+      8400
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Lindsey
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+        21
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+      8000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Nanette
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+        23
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+      8000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Louise
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+        23
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+      7500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+William
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+        25
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+      7500
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Elizabeth
+</td>
+<td align="right">
+      7300
+</td>
+<td align="right">
+        26
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+      7400
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Mattea
+</td>
+<td align="right">
+      7200
+</td>
+<td align="right">
+        27
+</td>
+<td align="right">
+      7300
+</td>
+<td align="right">
+      7300
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Oliver
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+        28
+</td>
+<td align="right">
+      7200
+</td>
+<td align="right">
+      7200
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Sarath
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+        28
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+David
+</td>
+<td align="right">
+      6800
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Sundar
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+        31
+</td>
+<td align="right">
+      6800
+</td>
+<td align="right">
+      6800
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Charles
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+        32
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+      6400
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Amit
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+        32
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+      6200
+</td>
+</tr>
+<tr>
+<td align="right">
+        80
+</td>
+<td>
+Sundita
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+        34
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+      6200
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td>
+Steven
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     24000
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td>
+Neena
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+     24000
+</td>
+</tr>
+<tr>
+<td align="right">
+        90
+</td>
+<td>
+Lex
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     17000
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+Nancy
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+Daniel
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+John
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         3
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      9000
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+Jose Manuel
+</td>
+<td align="right">
+      7800
+</td>
+<td align="right">
+         4
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      8200
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+Ismael
+</td>
+<td align="right">
+      7700
+</td>
+<td align="right">
+         5
+</td>
+<td align="right">
+      7800
+</td>
+<td align="right">
+      7800
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td>
+Luis
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+         6
+</td>
+<td align="right">
+      7700
+</td>
+<td align="right">
+      7700
+</td>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td>
+Shelley
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+FIRST_NAME
+</th>
+<th scope="col">
+SALARY
+</th>
+<th scope="col">
+SAL_RANK
+</th>
+<th scope="col">
+PREV_SALARY
+</th>
+<th scope="col">
+PREV_SALARY2
+</th>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td>
+William
+</td>
+<td align="right">
+      8300
+</td>
+<td align="right">
+         2
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+     12008
+</td>
+</tr>
+<tr>
+<td align="right">
+&nbsp;
+</td>
+<td>
+Kimberely
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+         1
+</td>
+<td align="right">
+         0
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+</table>
+<p>
+
+107 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; --2.170번 사원의 사원번호 직전 사원의 이름을 출력하세요./다시
+<br>
+SQL&gt; select frist_name
+<br>
+  2  from(
+<br>
+  3  	 select employee_id,LAG(first_name,1,0) over(order by employee_id) as frist_name
+<br>
+  4  	 from employees
+<br>
+  5  	 )
+<br>
+  6  	 where employee_id = 170;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+FRIST_NAME
+</th>
+</tr>
+<tr>
+<td>
+Harrison
+</td>
+</tr>
+</table>
+<p>
+
+SQL&gt; 
+<br>
+SQL&gt; --3.모든 사원의 급여 정보를 출력하세요./다시
+<br>
+SQL&gt; --출력할 때 각 사원이 근무하는 부서의 가장 적은 급여, 그리고 가장 큰 급여,
+<br>
+SQL&gt; --그리고 부서에서 급여가 가장 많은 사원과의 급여 차이를 출력하세요.
+<br>
+SQL&gt; select employee_id,department_id,
+<br>
+  2  first_value(salary) over(partition by department_id order by salary
+<br>
+  3  rows between unbounded preceding and unbounded following) as lower_sal,
+<br>
+  4  salary as MY_SAL,
+<br>
+  5  last_value(salary) over(partition by department_id order by salary
+<br>
+  6  rows between unbounded preceding and unbounded following) as higer_sal,
+<br>
+  7  last_value(salary) over(partition by department_id order by salary
+<br>
+  8  rows between unbounded preceding and unbounded following)-salary as diff_Sal
+<br>
+  9  from employees;
+<br>
+<p>
+<table border='1' width='90%' align='center' summary='Script output'>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       200
+</td>
+<td align="right">
+        10
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+      4400
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       202
+</td>
+<td align="right">
+        20
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+     13000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+       201
+</td>
+<td align="right">
+        20
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+     13000
+</td>
+<td align="right">
+     13000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       119
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+      8500
+</td>
+</tr>
+<tr>
+<td align="right">
+       118
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+      8400
+</td>
+</tr>
+<tr>
+<td align="right">
+       117
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+      8200
+</td>
+</tr>
+<tr>
+<td align="right">
+       116
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+      8100
+</td>
+</tr>
+<tr>
+<td align="right">
+       115
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+      7900
+</td>
+</tr>
+<tr>
+<td align="right">
+       114
+</td>
+<td align="right">
+        30
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       203
+</td>
+<td align="right">
+        40
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       132
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      6100
+</td>
+</tr>
+<tr>
+<td align="right">
+       136
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<td align="right">
+       128
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<td align="right">
+       135
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5800
+</td>
+</tr>
+<tr>
+<td align="right">
+       127
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2400
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5800
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       140
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5700
+</td>
+</tr>
+<tr>
+<td align="right">
+       144
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5700
+</td>
+</tr>
+<tr>
+<td align="right">
+       131
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5700
+</td>
+</tr>
+<tr>
+<td align="right">
+       191
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5700
+</td>
+</tr>
+<tr>
+<td align="right">
+       182
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5700
+</td>
+</tr>
+<tr>
+<td align="right">
+       198
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5600
+</td>
+</tr>
+<tr>
+<td align="right">
+       199
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5600
+</td>
+</tr>
+<tr>
+<td align="right">
+       143
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2600
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5600
+</td>
+</tr>
+<tr>
+<td align="right">
+       139
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5500
+</td>
+</tr>
+<tr>
+<td align="right">
+       126
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2700
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5500
+</td>
+</tr>
+<tr>
+<td align="right">
+       183
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5400
+</td>
+</tr>
+<tr>
+<td align="right">
+       195
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5400
+</td>
+</tr>
+<tr>
+<td align="right">
+       130
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2800
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5400
+</td>
+</tr>
+<tr>
+<td align="right">
+       190
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5300
+</td>
+</tr>
+<tr>
+<td align="right">
+       134
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      2900
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5300
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       187
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5200
+</td>
+</tr>
+<tr>
+<td align="right">
+       197
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3000
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5200
+</td>
+</tr>
+<tr>
+<td align="right">
+       142
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5100
+</td>
+</tr>
+<tr>
+<td align="right">
+       196
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5100
+</td>
+</tr>
+<tr>
+<td align="right">
+       181
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5100
+</td>
+</tr>
+<tr>
+<td align="right">
+       180
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       138
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       194
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       125
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       133
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4900
+</td>
+</tr>
+<tr>
+<td align="right">
+       129
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3300
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4900
+</td>
+</tr>
+<tr>
+<td align="right">
+       186
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3400
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4800
+</td>
+</tr>
+<tr>
+<td align="right">
+       141
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4700
+</td>
+</tr>
+<tr>
+<td align="right">
+       189
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4600
+</td>
+</tr>
+<tr>
+<td align="right">
+       137
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3600
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4600
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       188
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3800
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4400
+</td>
+</tr>
+<tr>
+<td align="right">
+       193
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      3900
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4300
+</td>
+</tr>
+<tr>
+<td align="right">
+       192
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      4000
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4200
+</td>
+</tr>
+<tr>
+<td align="right">
+       185
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      4100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4100
+</td>
+</tr>
+<tr>
+<td align="right">
+       184
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      4000
+</td>
+</tr>
+<tr>
+<td align="right">
+       124
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      5800
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      2400
+</td>
+</tr>
+<tr>
+<td align="right">
+       123
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      6500
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      1700
+</td>
+</tr>
+<tr>
+<td align="right">
+       122
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      7900
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+       300
+</td>
+</tr>
+<tr>
+<td align="right">
+       120
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+       200
+</td>
+</tr>
+<tr>
+<td align="right">
+       121
+</td>
+<td align="right">
+        50
+</td>
+<td align="right">
+      2100
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       107
+</td>
+<td align="right">
+        60
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      4800
+</td>
+</tr>
+<tr>
+<td align="right">
+       105
+</td>
+<td align="right">
+        60
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      4200
+</td>
+</tr>
+<tr>
+<td align="right">
+       106
+</td>
+<td align="right">
+        60
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      4800
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      4200
+</td>
+</tr>
+<tr>
+<td align="right">
+       104
+</td>
+<td align="right">
+        60
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      6000
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      3000
+</td>
+</tr>
+<tr>
+<td align="right">
+       103
+</td>
+<td align="right">
+        60
+</td>
+<td align="right">
+      4200
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       204
+</td>
+<td align="right">
+        70
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       173
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7900
+</td>
+</tr>
+<tr>
+<td align="right">
+       179
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7800
+</td>
+</tr>
+<tr>
+<td align="right">
+       167
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      6200
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7800
+</td>
+</tr>
+<tr>
+<td align="right">
+       166
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      6400
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7600
+</td>
+</tr>
+<tr>
+<td align="right">
+       165
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      6800
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7200
+</td>
+</tr>
+<tr>
+<td align="right">
+       161
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+       155
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+       164
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7200
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6800
+</td>
+</tr>
+<tr>
+<td align="right">
+       172
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7300
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6700
+</td>
+</tr>
+<tr>
+<td align="right">
+       171
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7400
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6600
+</td>
+</tr>
+<tr>
+<td align="right">
+       154
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6500
+</td>
+</tr>
+<tr>
+<td align="right">
+       160
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      7500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6500
+</td>
+</tr>
+<tr>
+<td align="right">
+       159
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<td align="right">
+       153
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      8000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      6000
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       177
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      8400
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      5600
+</td>
+</tr>
+<tr>
+<td align="right">
+       176
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      8600
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      5400
+</td>
+</tr>
+<tr>
+<td align="right">
+       175
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      8800
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      5200
+</td>
+</tr>
+<tr>
+<td align="right">
+       158
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       152
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      5000
+</td>
+</tr>
+<tr>
+<td align="right">
+       163
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4500
+</td>
+</tr>
+<tr>
+<td align="right">
+       151
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4500
+</td>
+</tr>
+<tr>
+<td align="right">
+       157
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4500
+</td>
+</tr>
+<tr>
+<td align="right">
+       170
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+      9600
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4400
+</td>
+</tr>
+<tr>
+<td align="right">
+       169
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4000
+</td>
+</tr>
+<tr>
+<td align="right">
+       150
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4000
+</td>
+</tr>
+<tr>
+<td align="right">
+       156
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     10000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      4000
+</td>
+</tr>
+<tr>
+<td align="right">
+       149
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      3500
+</td>
+</tr>
+<tr>
+<td align="right">
+       162
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     10500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      3500
+</td>
+</tr>
+<tr>
+<td align="right">
+       148
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      3000
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       174
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     11000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      3000
+</td>
+</tr>
+<tr>
+<td align="right">
+       168
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     11500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      2500
+</td>
+</tr>
+<tr>
+<td align="right">
+       147
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     12000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+      2000
+</td>
+</tr>
+<tr>
+<td align="right">
+       146
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     13500
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+       500
+</td>
+</tr>
+<tr>
+<td align="right">
+       145
+</td>
+<td align="right">
+        80
+</td>
+<td align="right">
+      6100
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+     14000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       102
+</td>
+<td align="right">
+        90
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+       101
+</td>
+<td align="right">
+        90
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+      7000
+</td>
+</tr>
+<tr>
+<td align="right">
+       100
+</td>
+<td align="right">
+        90
+</td>
+<td align="right">
+     17000
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+     24000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       113
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      5108
+</td>
+</tr>
+<tr>
+<td align="right">
+       111
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+      7700
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      4308
+</td>
+</tr>
+<tr>
+<td align="right">
+       112
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+      7800
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      4208
+</td>
+</tr>
+<tr>
+<td align="right">
+       110
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+      8200
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      3808
+</td>
+</tr>
+<tr>
+<td align="right">
+       109
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+      9000
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      3008
+</td>
+</tr>
+<tr>
+<td align="right">
+       108
+</td>
+<td align="right">
+       100
+</td>
+<td align="right">
+      6900
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       206
+</td>
+<td align="right">
+       110
+</td>
+<td align="right">
+      8300
+</td>
+<td align="right">
+      8300
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+      3708
+</td>
+</tr>
+<tr>
+<th scope="col">
+EMPLOYEE_ID
+</th>
+<th scope="col">
+DEPARTMENT_ID
+</th>
+<th scope="col">
+LOWER_SAL
+</th>
+<th scope="col">
+MY_SAL
+</th>
+<th scope="col">
+HIGER_SAL
+</th>
+<th scope="col">
+DIFF_SAL
+</th>
+</tr>
+<tr>
+<td align="right">
+       205
+</td>
+<td align="right">
+       110
+</td>
+<td align="right">
+      8300
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+     12008
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+<tr>
+<td align="right">
+       178
+</td>
+<td align="right">
+&nbsp;
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+      7000
+</td>
+<td align="right">
+         0
+</td>
+</tr>
+</table>
+<p>
+
+107 행이 선택되었습니다.<br>
+<br>
+
+
+SQL&gt; 
+<br>
+SQL&gt; SPOOL OFF
+<br>

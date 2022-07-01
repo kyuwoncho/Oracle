@@ -1,12 +1,12 @@
---¼­ºêÄõ¸®
---1. 20¹ø ºÎ¼­¿¡ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ ¸Å´ÏÀú¿Í ¸Å´ÏÀú°¡ °°Àº »ç¿øµéÀÇ Á¤º¸¸¦ Ãâ·ÂÇÏ¼¼¿ä.
+--ì„œë¸Œì¿¼ë¦¬
+--1. 20ë²ˆ ë¶€ì„œì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ë§¤ë‹ˆì €ì™€ ë§¤ë‹ˆì €ê°€ ê°™ì€ ì‚¬ì›ë“¤ì˜ ì •ë³´ë¥¼ ì¶œë ¥í•˜ì„¸ìš”.
 select employee_id,first_name,last_name,email,phone_number,hire_date,job_id,salary
 from employees
 where manager_id in (select manager_id
     from employees
     where department_id = 20);
 
---2. °¡Àå ¸¹Àº ±Ş¿©¸¦ ¹ŞÀº »ç¶÷ÀÇ ÀÌ¸§ Ãâ·Â
+--2. ê°€ì¥ ë§ì€ ê¸‰ì—¬ë¥¼ ë°›ì€ ì‚¬ëŒì˜ ì´ë¦„ ì¶œë ¥
 select first_name
 from(
 select first_name, salary
@@ -14,7 +14,7 @@ from employees
 order by salary DESC)
 where rownum=1;
 
---3. ±Ş¿© ¼øÀ¸·Î(³»¸²Â÷¼ø) 3À§ºÎÅÍ 5À§±îÁö Ãâ·ÂÇÏ¼¼¿ä.(rownum ÀÌ¿ë)
+--3. ê¸‰ì—¬ ìˆœìœ¼ë¡œ(ë‚´ë¦¼ì°¨ìˆœ) 3ìœ„ë¶€í„° 5ìœ„ê¹Œì§€ ì¶œë ¥í•˜ì„¸ìš”.(rownum ì´ìš©)
 select rnum, first_name, salary
 from(
     select rownum as rnum,first_name, salary
@@ -26,7 +26,7 @@ from(
     )
 where rnum between 3 and 5;
 
---4. . ºÎ¼­º° ºÎ¼­ÀÇ Æò±ÕÀÌ»ó ±Ş¿©¸¦ ¹Ş´Â »ç¿øÀÇ ºÎ¼­¹øÈ£, ÀÌ¸§, ±Ş¿©, Æò±Õ±Ş¿©¸¦ Ãâ·ÂÇÏ¼¼¿ä
+--4. . ë¶€ì„œë³„ ë¶€ì„œì˜ í‰ê· ì´ìƒ ê¸‰ì—¬ë¥¼ ë°›ëŠ” ì‚¬ì›ì˜ ë¶€ì„œë²ˆí˜¸, ì´ë¦„, ê¸‰ì—¬, í‰ê· ê¸‰ì—¬ë¥¼ ì¶œë ¥í•˜ì„¸ìš”
 select department_id, first_name,salary,
 (select round(avg(salary)) from employees c where c.department_id = a.department_id) as AVG_SAL
 from employees a

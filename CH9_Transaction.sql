@@ -1,13 +1,13 @@
---8Àå µ¥ÀÌÅÍ Á¶ÀÛ(DML)
---¿¬½À
+--8ì¥ ë°ì´í„° ì¡°ì‘(DML)
+--ì—°ìŠµ
 create table emp1 as select * from employees;
 select count(*) from emp1;
 
 create table emp2 as select * from employees where 1=2;
 select count(8) from emp2;
---Å×ÀÌºí ±¸Á¶ È®ÀÎ
+--í…Œì´ë¸” êµ¬ì¡° í™•ì¸
 DESC departments;
---»ğÀÔ
+--ì‚½ì…
 INSERT INTO departments	
 VALUES (280,'Data Analytics',null,1700);
 
@@ -40,15 +40,15 @@ add ( constraint emps_emp_id_pk primary key (employee_id),
 constraint emps_manager_id_fk FOREIGN KEY (manager_id)
 references emps(employee_id)
 );
---103¹ø »ç¿øÀÇ »ç¿ø ¾ÆÀÌµğ¿Í ÀÌ¸§±×¸®°í ±Ş¿© Ãâ·ÂÇÏ±â
+--103ë²ˆ ì‚¬ì›ì˜ ì‚¬ì› ì•„ì´ë””ì™€ ì´ë¦„ê·¸ë¦¬ê³  ê¸‰ì—¬ ì¶œë ¥í•˜ê¸°
 select employee_id, first_name,salary
 from emps
 where employee_id =103;
---103¹ø »ç¿øÀÇ ±Ş¿©¸¦ 10% ÀÎ»óÇÏ±â
+--103ë²ˆ ì‚¬ì›ì˜ ê¸‰ì—¬ë¥¼ 10% ì¸ìƒí•˜ê¸°
 update emps
 set salary=salary*1.1
 where employee_id = 103;
---º¯°æµÈ ÇàÀ» È®ÀÎÇÏ±â
+--ë³€ê²½ëœ í–‰ì„ í™•ì¸í•˜ê¸°
 select employee_id, first_name,salary
 from emps
 where employee_id = 103;
@@ -59,7 +59,7 @@ select employee_id, first_name, job_id, salary, manager_id
 from emps
 where employee_id IN (108,190);
 
---update ±¸¹® ÀÛ¼º
+--update êµ¬ë¬¸ ì‘ì„±
 update emps
 set (job_id,salary,manager_id) = (select job_id, salary, manager_id
 from emps where employee_id = 108)
@@ -74,11 +74,11 @@ add (constraint emps_emp_id_pk
     references emps(employee_id)
 );
 
--- EMPS_IT Å×ÀÌºí°ú EMPLOYEES Å×ÀÌºí º´ÇÕ.
--- Á÷¹«°¡ IT_PROG ÀÎ »ç¿øµéÀÇ Á¤º¸¸¦ EMPLOYEES Å×ÀÌºí¿¡¼­ Á¶È¸
--- EMPS_IT Å×ÀÌºí°ú º´ÇÕ
---EMPS_IT Å×ÀÌºí¿¡ »ç¿ø ¾ÆÀÌµğ°¡ °°Æ°¤· »ç¿ø Á¤º¸°¡ Á¸ÀçÇÒ ‹š´Â ±âÁ¸ Á¤º¸¸¦ EMPLOYEES Å×ÀÌºíÀÇ ³»¿ëÀ¸·Î UPDATE
---EMPS_IT Å×ÀÌºí¿¡ ¾ø´Â ÇàµéÀº INSERT ¼öÇà
+-- EMPS_IT í…Œì´ë¸”ê³¼ EMPLOYEES í…Œì´ë¸” ë³‘í•©.
+-- ì§ë¬´ê°€ IT_PROG ì¸ ì‚¬ì›ë“¤ì˜ ì •ë³´ë¥¼ EMPLOYEES í…Œì´ë¸”ì—ì„œ ì¡°íšŒ
+-- EMPS_IT í…Œì´ë¸”ê³¼ ë³‘í•©
+--EMPS_IT í…Œì´ë¸”ì— ì‚¬ì› ì•„ì´ë””ê°€ ê°™íŠ¼ã…‡ ì‚¬ì› ì •ë³´ê°€ ì¡´ì¬í•  Â‹ÂšëŠ” ê¸°ì¡´ ì •ë³´ë¥¼ EMPLOYEES í…Œì´ë¸”ì˜ ë‚´ìš©ìœ¼ë¡œ UPDATE
+--EMPS_IT í…Œì´ë¸”ì— ì—†ëŠ” í–‰ë“¤ì€ INSERT ìˆ˜í–‰
 create table emps_it as select * from employees where 1=2;
 
 merge into emp_it a
@@ -100,35 +100,35 @@ when not matched then
     b.commission_pct, b.manager_id, b.department_id);
     
 
---¿¬½À¹®Á¦
---1. EMPLOYEES Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ ¿­ ´ÜÀ§·Î ³ª´² ÀúÀåÇÏ°í ½Í½À´Ï´Ù. 
--- »ç¿ø¹øÈ£, »ç¿øÀÌ¸§, ±Ş¿©, º¸³Ê½ºÀ²À» ÀúÀåÇÏ±â À§ÇÑ ±¸Á¶¿Í µ¥ÀÌÅÍ¸¦ °®´Â Å×ÀÌºíÀ» 
---EMP_SALARY_INFOÀÌ¶ó´Â ÀÌ¸§À¸·Î »ı¼ºÇÏ¼¼¿ä. 
--- ±×¸®°í »ç¿ø¹øÈ£, »ç¿øÀÌ¸§, ÀÔ»çÀÏ, ºÎ¼­¹øÈ£¸¦ ÀúÀåÇÏ±â À§ÇÑ 
---±¸Á¶¿Í µ¥ÀÌÅÍ¸¦ °®´Â Å×ÀÌºíÀ» EMP_HIREDATE_INFO¶ó´Â ÀÌ¸§À¸·Î »ı¼ºÇÏ¼¼¿ä
+--ì—°ìŠµë¬¸ì œ
+--1. EMPLOYEES í…Œì´ë¸”ì— ìˆëŠ” ë°ì´í„°ë¥¼ ì—´ ë‹¨ìœ„ë¡œ ë‚˜ëˆ  ì €ì¥í•˜ê³  ì‹¶ìŠµë‹ˆë‹¤. 
+-- ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ì´ë¦„, ê¸‰ì—¬, ë³´ë„ˆìŠ¤ìœ¨ì„ ì €ì¥í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì™€ ë°ì´í„°ë¥¼ ê°–ëŠ” í…Œì´ë¸”ì„ 
+--EMP_SALARY_INFOì´ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±í•˜ì„¸ìš”. 
+-- ê·¸ë¦¬ê³  ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ì´ë¦„, ì…ì‚¬ì¼, ë¶€ì„œë²ˆí˜¸ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ 
+--êµ¬ì¡°ì™€ ë°ì´í„°ë¥¼ ê°–ëŠ” í…Œì´ë¸”ì„ EMP_HIREDATE_INFOë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±í•˜ì„¸ìš”
 create table emp_salary_info AS
     select employee_id, first_name, salary, commission_pct
     from employees;
 create table emp_hiredate_info as
     select employee_id, first_name, hire_date, department_id
     from employees;
---2. EMPLOYEES Å×ÀÌºí¿¡ ´ÙÀ½ µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÏ¼¼¿ä
---»ç¿ø¹øÈ£ : 1030/¼º : KilDong/ÀÌ¸§ : Hong/ÀÌ¸ŞÀÏ : HONGKD/ÀüÈ­¹øÈ£ : 010-1234-5678
--- ÀÔ»çÀÏ : 2018/03/20 / Á÷¹«¾ÆÀÌµğ : IT_PROG/±Ş¿© : 6000/º¸³Ê½ºÀ² : 0.2/¸Å´ÏÀú¹øÈ£ : 103/ºÎ¼­¹øÈ£ : 60
+--2. EMPLOYEES í…Œì´ë¸”ì— ë‹¤ìŒ ë°ì´í„°ë¥¼ ì¶”ê°€í•˜ì„¸ìš”
+--ì‚¬ì›ë²ˆí˜¸ : 1030/ì„± : KilDong/ì´ë¦„ : Hong/ì´ë©”ì¼ : HONGKD/ì „í™”ë²ˆí˜¸ : 010-1234-5678
+-- ì…ì‚¬ì¼ : 2018/03/20 / ì§ë¬´ì•„ì´ë”” : IT_PROG/ê¸‰ì—¬ : 6000/ë³´ë„ˆìŠ¤ìœ¨ : 0.2/ë§¤ë‹ˆì €ë²ˆí˜¸ : 103/ë¶€ì„œë²ˆí˜¸ : 60
 insert into employees
 values(1030,'kilDong','Hong','HONGKD','010-1234-5678','18/03/20','IT_PROG',6000,0.2,103,60);
---3.1030¹ø »ç¿øÀÇ ±Ş¿©¸¦ 10% ÀÎ»ó½ÃÅ°¼¼¿ä.
+--3.1030ë²ˆ ì‚¬ì›ì˜ ê¸‰ì—¬ë¥¼ 10% ì¸ìƒì‹œí‚¤ì„¸ìš”.
 update employees set salary=salary*1.1
 where employee_id = 1030;
---4. 1030¹ø »ç¿øÀÇ Á¤º¸¸¦ »èÁ¦ÇÏ¼¼¿ä.
+--4. 1030ë²ˆ ì‚¬ì›ì˜ ì •ë³´ë¥¼ ì‚­ì œí•˜ì„¸ìš”.
 delete from employees
 where employee_id = 1030;
---5. »ç¿øÅ×ÀÌºíÀ» ÀÌ¿ëÇÏ¿©, 2001~2003³â¿¡ ±Ù¹«ÇÑ »ç¿øµéÀÇ employee_id,first_name,hire_data, ¿¬µµ¸¦ Ãâ·Â
---Á¶°Ç1) °¢ ¿¬µµ¿¡ ÇØ´çÇÏ´Â Å×ÀÌºíÀ» »ı¼º. ¼Ó¼ºÀº »ç¿ø»çÀÌµğ,ÀÌ¸§,ÀÔ»çÀÏ,¿¬µµ. µ¥ÀÌÅÍ Å©±â ÁöÁ¤. Å×ÀÌºí ÀÌ¸§Àº emp_yr_¿¬µµ
---Á¶°Ç2) ¿¬µµ ¿­Àº ÀÔ»çÀÏ¿¡¼­ ¿¬µµ¸¸ Ãâ·Â. ¿­ ÀÌ¸§Àº 'yr'ÀÌ°í, 4ÀÚ¸® ¹®ÀÚ·Î Ç¥Çö
---Á¶°Ç3) INSERT ALL ±¸¹®À¸·Î ÀÛ¼º
+--5. ì‚¬ì›í…Œì´ë¸”ì„ ì´ìš©í•˜ì—¬, 2001~2003ë…„ì— ê·¼ë¬´í•œ ì‚¬ì›ë“¤ì˜ employee_id,first_name,hire_data, ì—°ë„ë¥¼ ì¶œë ¥
+--ì¡°ê±´1) ê° ì—°ë„ì— í•´ë‹¹í•˜ëŠ” í…Œì´ë¸”ì„ ìƒì„±. ì†ì„±ì€ ì‚¬ì›ì‚¬ì´ë””,ì´ë¦„,ì…ì‚¬ì¼,ì—°ë„. ë°ì´í„° í¬ê¸° ì§€ì •. í…Œì´ë¸” ì´ë¦„ì€ emp_yr_ì—°ë„
+--ì¡°ê±´2) ì—°ë„ ì—´ì€ ì…ì‚¬ì¼ì—ì„œ ì—°ë„ë§Œ ì¶œë ¥. ì—´ ì´ë¦„ì€ 'yr'ì´ê³ , 4ìë¦¬ ë¬¸ìë¡œ í‘œí˜„
+--ì¡°ê±´3) INSERT ALL êµ¬ë¬¸ìœ¼ë¡œ ì‘ì„±
 
---Å×ÀÌºí »ı¼º
+--í…Œì´ë¸” ìƒì„±
 create table emp_yr_2001(
     employee_id NUMBER(6,0),
     first_name VARCHAR2(20),
@@ -144,7 +144,7 @@ create TABLE emp_yr_2003(
     first_name VARCHAR2(20),
     hire_date DATE,
     yr VARCHAR2(20));
---Çà »ğÀÔ
+--í–‰ ì‚½ì…
 insert all
 when To_char(hire_date, 'RRRR') = '2001' then
  into emp_yr_2001 values (employee_id,first_name, hire_date, yr)
@@ -158,7 +158,7 @@ select * from emp_yr_2001;
 select * from emp_yr_2002;
 select * from emp_yr_2003;
 
---6. ¹®Á¦5ÀÇ Á¶°Ç3À» ºñ±³¿¬»êÀÚ¸¦ »ç¿ëÇÏ¿© INSERT FIRST ±¸¹®À¸·Î ÀÛ¼ºÇÏ±â
+--6. ë¬¸ì œ5ì˜ ì¡°ê±´3ì„ ë¹„êµì—°ì‚°ìë¥¼ ì‚¬ìš©í•˜ì—¬ INSERT FIRST êµ¬ë¬¸ìœ¼ë¡œ ì‘ì„±í•˜ê¸°
 insert first
  when hire_date <= '01/12/31' then
     into emp_yr_2001 values (employee_id,first_name, hire_date, yr)
@@ -169,9 +169,9 @@ insert first
     
 select employee_id, first_name, hire_date, to_Char(hire_date,'YYYY') as yr from employees;
 
---7. employees Å×ÀÌºíÀÇ »ç¿øµé Á¤º¸¸¦ ¾Æ·¡ÀÇ µÎ Å×ÀÌºí¿¡ ³ª´² ÀúÀåÇÏ±â
---Á¶°Ç1) emp_personal_info Å×ÀÌºí¿¡´Â employee_id, first_name, last_name, email, phone_number°¡ ÀúÀå
---Á¶°Ç2)emp_office_info Å×ÀÌºí¿¡ employee_id, hire_date, salary, commission_pct, manager_id, department_id¸¦ ÀúÀå
+--7. employees í…Œì´ë¸”ì˜ ì‚¬ì›ë“¤ ì •ë³´ë¥¼ ì•„ë˜ì˜ ë‘ í…Œì´ë¸”ì— ë‚˜ëˆ  ì €ì¥í•˜ê¸°
+--ì¡°ê±´1) emp_personal_info í…Œì´ë¸”ì—ëŠ” employee_id, first_name, last_name, email, phone_numberê°€ ì €ì¥
+--ì¡°ê±´2)emp_office_info í…Œì´ë¸”ì— employee_id, hire_date, salary, commission_pct, manager_id, department_idë¥¼ ì €ì¥
 create table emp_personal_info as
     select employee_id, first_name, last_name, email,phone_number
     from employees
@@ -190,9 +190,9 @@ insert all
 select * from emp_personal_info;
 select * from emp_office_info;
 
---8. employees Å×ÀÌºíÀÇ »ç¿øµé Á¤º¸¸¦ ¾Æ·¡ÀÇ µÎ Å×ÀÌºí¿¡ ³ª´²¼­ ÀúÀå
---Á¶°Ç1) º¸³Ê½º°¡ ÀÖ´Â »ç¿øµéÀÇ Á¤º¸´Â emp_comm Å×ÀÌºí¿¡ ÀúÀå
---Á¶°Ç2) º¸³Ê½º°¡ ¾ø´Â »ç¿øµéÀÇ Á¤º¸´Â emp_nocomm Å×ÀÌºí¿¡ ÀúÀå
+--8. employees í…Œì´ë¸”ì˜ ì‚¬ì›ë“¤ ì •ë³´ë¥¼ ì•„ë˜ì˜ ë‘ í…Œì´ë¸”ì— ë‚˜ëˆ ì„œ ì €ì¥
+--ì¡°ê±´1) ë³´ë„ˆìŠ¤ê°€ ìˆëŠ” ì‚¬ì›ë“¤ì˜ ì •ë³´ëŠ” emp_comm í…Œì´ë¸”ì— ì €ì¥
+--ì¡°ê±´2) ë³´ë„ˆìŠ¤ê°€ ì—†ëŠ” ì‚¬ì›ë“¤ì˜ ì •ë³´ëŠ” emp_nocomm í…Œì´ë¸”ì— ì €ì¥
 create table emp_comm as select * from employees where 1=2;
 create table emp_nocomm as select * from employees where 1=2;
 insert all

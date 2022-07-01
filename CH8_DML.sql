@@ -1,15 +1,15 @@
 --ch8 DML
--- 103¹ø »ç¿øÀÇ »ç¿ø ¾ÆÀÌµğ¿Í ÀÌ¸§ ±×¸®°í ±Ş¿©¸¦ 10%ÀÎ»ó
+-- 103ë²ˆ ì‚¬ì›ì˜ ì‚¬ì› ì•„ì´ë””ì™€ ì´ë¦„ ê·¸ë¦¬ê³  ê¸‰ì—¬ë¥¼ 10%ì¸ìƒ
 update emps
 set salary=salary *1.1
 where employee_id = 103;
 
--- º¯°æµÈ ÇàÀ» È®ÀÎ
+-- ë³€ê²½ëœ í–‰ì„ í™•ì¸
 select employee_id,first_name,salary
 from emps
 where employee_id = 103;
 
---¼­ºêÄõ¸®·Î ´ÙÁß ¿­ °»½Å ±¸¹®À» ÀÛ¼ºÇÏ±â Àü¿¡ º¯°æ Àü µ¥ÀÌÅÍ Ãâ·Â
+--ì„œë¸Œì¿¼ë¦¬ë¡œ ë‹¤ì¤‘ ì—´ ê°±ì‹  êµ¬ë¬¸ì„ ì‘ì„±í•˜ê¸° ì „ì— ë³€ê²½ ì „ ë°ì´í„° ì¶œë ¥
 select employee_id,first_name, job_id, salary, manaer_id
 from employees
 where employee_id in (108,109);
@@ -21,7 +21,7 @@ update emps
     where employee_id=108)
 where employee_id = 109;
 
---delete±¸¹®
+--deleteêµ¬ë¬¸
 create table emps as select * from employees;
 
 alter table emps
@@ -30,26 +30,26 @@ add (constraint emps_emp_id_pk primary key (employee_id),
     references emps(employee_id)
     );
     
---Çà »èÁ¦
+--í–‰ ì‚­ì œ
 delete from empls
 where employee_id = 104;
---ºÎ¼­ ÀÌ¸§ÀÌ shippingÀÎ ¸ğµç »ç¿ø Á¤º¸ »èÁ¦
+--ë¶€ì„œ ì´ë¦„ì´ shippingì¸ ëª¨ë“  ì‚¬ì› ì •ë³´ ì‚­ì œ
 delete from emps
 where department_id = (select department_id from depts where department_name = 'Shipping');
--- È®ÀÎ
+-- í™•ì¸
 COMMIT;
 
---employees Å×ÀÌºí°ú ±¸Á¶¸¸ °°°í, µ¥ÀÌÅÍ´Â Æ÷ÇÔX ÀÓ½Ã Å×ÀÌºí EMPS_IT »ı¼º
---IT_PROG Á÷¹«¸¦ °®´Â »ç¿ì³Ê Á¤º¸¸¸ ÀúÀåÇÏ±â À§ÇÑ Å×ÀÌºí
+--employees í…Œì´ë¸”ê³¼ êµ¬ì¡°ë§Œ ê°™ê³ , ë°ì´í„°ëŠ” í¬í•¨X ì„ì‹œ í…Œì´ë¸” EMPS_IT ìƒì„±
+--IT_PROG ì§ë¬´ë¥¼ ê°–ëŠ” ì‚¬ìš°ë„ˆ ì •ë³´ë§Œ ì €ì¥í•˜ê¸° ìœ„í•œ í…Œì´ë¸”
 create table emps_it as select * from employees where 1=2;
 
 insert into emps_it(employee_id,first_name,last_name,email,hire_date,job_id)
 values (105,'David','kim','DAVIDIM','06/03/04','IT_PROG');
 
--- EMPS_IT°ú EMPLOYEES Å×ÀÌºí º´ÇÕ
--- Á÷¹«°¡ IT_PROGÀÎ »ç¿øµéÀÇ Á¤º¸¸¦ employees Å×ÀÌºí¿¡¼­ Á¶È¸ + EMPS_IT Å×ÀÌºí°ú º´ÇÕ
--- EMPS_IT Å×ÀÌºí¿¡ »ç¿ø ¾ÆÀÌµğ°¡ °°Àº »ç¿ø Á¤º¸°¡ Á¸ÀçÇÒ ¶§´Â ±âÁ¸ Á¤º¸µé EMPLOYEES Å×ÀÌºíÀÇ ³»¿ëÀ¸·Î update
--- emps_it Å×ÀÌºí¿¡ ¾ø´Â ÇàµéÀ» insert¼öÇà
+-- EMPS_ITê³¼ EMPLOYEES í…Œì´ë¸” ë³‘í•©
+-- ì§ë¬´ê°€ IT_PROGì¸ ì‚¬ì›ë“¤ì˜ ì •ë³´ë¥¼ employees í…Œì´ë¸”ì—ì„œ ì¡°íšŒ + EMPS_IT í…Œì´ë¸”ê³¼ ë³‘í•©
+-- EMPS_IT í…Œì´ë¸”ì— ì‚¬ì› ì•„ì´ë””ê°€ ê°™ì€ ì‚¬ì› ì •ë³´ê°€ ì¡´ì¬í•  ë•ŒëŠ” ê¸°ì¡´ ì •ë³´ë“¤ EMPLOYEES í…Œì´ë¸”ì˜ ë‚´ìš©ìœ¼ë¡œ update
+-- emps_it í…Œì´ë¸”ì— ì—†ëŠ” í–‰ë“¤ì„ insertìˆ˜í–‰
 MERGE	INTO	emps_it	a
  		USING	(SELECT	*	FROM	employees	WHERE	job_id='IT_PROG')	b
  		ON	(a.employee_id	=	b.employee_id)
@@ -67,9 +67,9 @@ WHEN	NOT	MATCHED	THEN
  			(b.employee_id,	b.first_name,	b.last_name,	b.email,	
  				b.phone_number,	b.hire_date,	b.job_id,	b.salary,	
  				b.commission_pct,	b.manager_id,	b.department_id);
---º´ÇÕ È®ÀÎ
+--ë³‘í•© í™•ì¸
 SELECT * FROM emps_it;
--- insert allÀ» ÀÌ¿ëÇÏ¿© °¢°¢ ´Ù¸¥ Å×ÀÌºí¿¡ µ¥ÀÌÅÍ ÀúÀå
+-- insert allì„ ì´ìš©í•˜ì—¬ ê°ê° ë‹¤ë¥¸ í…Œì´ë¸”ì— ë°ì´í„° ì €ì¥
 
 insert all
     into emp1 
@@ -77,27 +77,27 @@ insert all
     into emp2
         values(400,'Kilseo','Hong','KSHONG','011.3402.7902', TO_DATE('2015-06-20', 'YYYY-MM-DD'),'IT_PROG', 5500, null, 100, 90)
 select * from dual;
--- employees Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ ¿­ ´ÜÀ§·Î ³ª´©¾î ÀúÀå
--- 1) EMP_SALARY Å×ÀÌºíÀº »ç¿ø¹øÈ£, »ç¿ì³ÊÀÌ¸§, ±Ş¿© ±×¸®°í º¸³Ê½º¸¦ ÀúÀå
+-- employees í…Œì´ë¸”ì— ìˆëŠ” ë°ì´í„°ë¥¼ ì—´ ë‹¨ìœ„ë¡œ ë‚˜ëˆ„ì–´ ì €ì¥
+-- 1) EMP_SALARY í…Œì´ë¸”ì€ ì‚¬ì›ë²ˆí˜¸, ì‚¬ìš°ë„ˆì´ë¦„, ê¸‰ì—¬ ê·¸ë¦¬ê³  ë³´ë„ˆìŠ¤ë¥¼ ì €ì¥
 create table emp_salary as
 select employee_id, first_name, salary, commission_pct
 from employees
 where 1=2;
--- 2) EMP_HIRE_DATE Å×ÀÌºíÀº »ç¿ø¹øÈ£, »ç¿ø ÀÌ¸§, ÀÔ»çÀÏ ±×¸®°í ºÎ¼­¹øÈ£¸¦ ÀúÀå
+-- 2) EMP_HIRE_DATE í…Œì´ë¸”ì€ ì‚¬ì›ë²ˆí˜¸, ì‚¬ì› ì´ë¦„, ì…ì‚¬ì¼ ê·¸ë¦¬ê³  ë¶€ì„œë²ˆí˜¸ë¥¼ ì €ì¥
 create table emp_hire_date  as
     select employee_id first_name, hire_date,department_id
     from employees
     where 1=2;
---3) EMP_SALARY¿Í EMP_HIRE_DATE Å×ÀÌºí¿¡ ³ª´©¾î ÀúÀå
+--3) EMP_SALARYì™€ EMP_HIRE_DATE í…Œì´ë¸”ì— ë‚˜ëˆ„ì–´ ì €ì¥
 insert all
 into emp_salary VALUES(employee_id, first_name,salary, commission_pct)
 into emp_hire_date VALUES(employee_id, first_name, hire_date,department_id)
 select * from employees;
---È®ÀÎÇÏ±â
+--í™•ì¸í•˜ê¸°
 select * from emp_salary;
 select * from emp_hire_date;
 create table emp_10 as select * from employees where 1=2;
---ºÎ¼­¹øÈ£=10/»ç¿øÁ¤º¸=EMP_10/ºÎ¼­¹øÈ£=20 > EMP_20 Å×ÀÌºí¿¡ ÀúÀå
+--ë¶€ì„œë²ˆí˜¸=10/ì‚¬ì›ì •ë³´=EMP_10/ë¶€ì„œë²ˆí˜¸=20 > EMP_20 í…Œì´ë¸”ì— ì €ì¥
 create table em_10 as select * from employees;
 create table em_20 as select * from employees;
 insert all
@@ -106,61 +106,61 @@ insert all
     when department_id = 20 then
         into em_20 values(employee_id, first_name, last_name,email,phone_number,hire_date,job_id,salary,commission_pct,manager_id,department_id)
 select * from employees;
---È®ÀÎÇÏ±â
+--í™•ì¸í•˜ê¸°
 select * from em_20;
 --condidtional insert first
--- Ã¹¹øÂ° when Àı¿¡¼­ Á¶°ÇÀ» ¸¸Á·ÇÒ °æ¿ì ´ÙÀ½ when ÀıÀº ¼öÇàX
+-- ì²«ë²ˆì§¸ when ì ˆì—ì„œ ì¡°ê±´ì„ ë§Œì¡±í•  ê²½ìš° ë‹¤ìŒ when ì ˆì€ ìˆ˜í–‰X
 create table emp_sal5000 as select employee_id, first_name,salary from employees where 1=2;
 create table emp_sal10000 as select employee_id, first_name,salary from employees where 1=2;
 create table emp_sal15000 as select employee_id, first_name,salary from employees where 1=2;
 create table emp_sal2000 as select employee_id, first_name, salary from employees where 1=2;
 create table emp_sal25000 as select employee_id, first_name, salary from employees where 1=2;
 
---¿¬½À¹®Á¦
---1. EMPLOYEES Å×ÀÌºí¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ ¿­ ´ÜÀ§·Î ³ª´² ÀúÀåÇÏ°í ½Í½À´Ï´Ù. 
--- »ç¿ø¹øÈ£, »ç¿øÀÌ¸§, ±Ş¿©, º¸³Ê½ºÀ²À» ÀúÀåÇÏ±â À§ÇÑ ±¸Á¶¿Í µ¥ÀÌÅÍ¸¦ °®´Â Å×ÀÌºíÀ» EMP_SALARY_INFOÀÌ¶ó´Â ÀÌ¸§À¸·Î »ı¼º
---»ç¿ø¹øÈ£, »ç¿øÀÌ¸§, ÀÔ»çÀÏ, ºÎ¼­¹øÈ£¸¦ ÀúÀåÇÏ±â À§ÇÑ ±¸Á¶¿Í µ¥ÀÌÅÍ¸¦ °®´Â Å×ÀÌºíÀ» EMP_HIREDATE_INFO¶ó´Â ÀÌ¸§À¸·Î »ı¼º
+--ì—°ìŠµë¬¸ì œ
+--1. EMPLOYEES í…Œì´ë¸”ì— ìˆëŠ” ë°ì´í„°ë¥¼ ì—´ ë‹¨ìœ„ë¡œ ë‚˜ëˆ  ì €ì¥í•˜ê³  ì‹¶ìŠµë‹ˆë‹¤. 
+-- ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ì´ë¦„, ê¸‰ì—¬, ë³´ë„ˆìŠ¤ìœ¨ì„ ì €ì¥í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì™€ ë°ì´í„°ë¥¼ ê°–ëŠ” í…Œì´ë¸”ì„ EMP_SALARY_INFOì´ë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±
+--ì‚¬ì›ë²ˆí˜¸, ì‚¬ì›ì´ë¦„, ì…ì‚¬ì¼, ë¶€ì„œë²ˆí˜¸ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ êµ¬ì¡°ì™€ ë°ì´í„°ë¥¼ ê°–ëŠ” í…Œì´ë¸”ì„ EMP_HIREDATE_INFOë¼ëŠ” ì´ë¦„ìœ¼ë¡œ ìƒì„±
 create table SALARY_INFO as select employee_id, first_name, salary, commission_pct from employees;
 create table HIREDATE_INFO as select employee_id, first_name, hire_date,department_id from employees;
 --CHECK
 select * from SALARY_INFO;
 select * from HIREDATE_INFO;
 
---2. EMPLOYEES Å×ÀÌºí¿¡ ´ÙÀ½ µ¥ÀÌÅÍ¸¦ Ãß°¡ÇÏ¼¼¿ä
---(±×¸²)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+--2. EMPLOYEES í…Œì´ë¸”ì— ë‹¤ìŒ ë°ì´í„°ë¥¼ ì¶”ê°€í•˜ì„¸ìš”
+--(ê·¸ë¦¼)>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 insert into employees
 values(1030,'KilDong','hong','HONGKD','010-1234-5678','2018/03/20','IT_PROG',6000,0.2,103,60);
 --check
 select * from employees where first_name LIKE 'KilDong';
 
---3. 1030¹ø »ç¿øÀÇ ±Ş¿©¸¦ 10% ÀÎ»ó½ÃÅ°¼¼¿ä.
+--3. 1030ë²ˆ ì‚¬ì›ì˜ ê¸‰ì—¬ë¥¼ 10% ì¸ìƒì‹œí‚¤ì„¸ìš”.
 update employees set salary= salary*1.1
 where employee_id = '1030';
 --check
 select * from employees where employee_id = '1030';
 
---4.1030¹ø »ç¿øÀÇ Á¤º¸¸¦ »èÁ¦ÇÏ¼¼¿ä
+--4.1030ë²ˆ ì‚¬ì›ì˜ ì •ë³´ë¥¼ ì‚­ì œí•˜ì„¸ìš”
 delete from employees where employee_id = '1030';
 
---5. »ç¿øÅ×ÀÌºíÀ» ÀÌ¿ëÇÏ¿©, 2001³â¿¡ ±Ù¹«ÇÑ »ç¿øµéÀÇ »ç¿ø¾ÆÀÌµğ, ÀÌ¸§, ÀÔ»çÀÏ, ¿¬µµ¸¦ Ãâ·Â
+--5. ì‚¬ì›í…Œì´ë¸”ì„ ì´ìš©í•˜ì—¬, 2001ë…„ì— ê·¼ë¬´í•œ ì‚¬ì›ë“¤ì˜ ì‚¬ì›ì•„ì´ë””, ì´ë¦„, ì…ì‚¬ì¼, ì—°ë„ë¥¼ ì¶œë ¥
 create table yr_2001 as select employee_id, first_name,hire_date,to_char(hire_date,'YYYY') as YEAR from employees where to_char(hire_date,'YYYY') = '2001';
 --check
 select * from yr_2001;
---µ¥ÀÌÅÍ Å©±â ÁöÁ¤ + insert allÀ» »ç¿ëÇÏ¿© 2002³âµµ ³Ö±â
+--ë°ì´í„° í¬ê¸° ì§€ì • + insert allì„ ì‚¬ìš©í•˜ì—¬ 2002ë…„ë„ ë„£ê¸°
 create table yr_2002
     (employee_id number(6,0),
     first_name VARCHAR2(20),
     hire_date DATE,
     yr VARCHAR2(20));
---»ğÀÔ
+--ì‚½ì…
 insert into yr_2002 (employee_id,first_name,hire_date,yr)
 select employee_id,first_name,hire_date,to_char(hire_date,'YYYY') as yr from employees where to_char(hire_date,'YYYY') ='2002';
 --check
 select * from yr_2002;
 
---6. Employees Å×ÀÌºíÀÇ »ç¿øµé Á¤º¸¸¦ ¾Æ·¡ÀÇ µÎ Å×ÀÌºí¿¡ ³ª´² ÀúÀåÇÏ¼¼¿ä. >>>>>>????????????????????????????????????????
--- Á¶°Ç1) emp_personal_info Å×ÀÌºí¿¡´Â employee_id, first_name, last_name, email,phone_number°¡ ÀúÀåµÇµµ·Ï ÇÏ¼¼¿ä. 
--- Á¶°Ç2) emp_office_info Å×ÀÌºí¿¡´Â employee_id, hire_date, salary, commission_pct,manager_id, department_id°¡ ÀúÀåµÇµµ·Ï ÇÏ¼¼¿ä.
+--6. Employees í…Œì´ë¸”ì˜ ì‚¬ì›ë“¤ ì •ë³´ë¥¼ ì•„ë˜ì˜ ë‘ í…Œì´ë¸”ì— ë‚˜ëˆ  ì €ì¥í•˜ì„¸ìš”. >>>>>>????????????????????????????????????????
+-- ì¡°ê±´1) emp_personal_info í…Œì´ë¸”ì—ëŠ” employee_id, first_name, last_name, email,phone_numberê°€ ì €ì¥ë˜ë„ë¡ í•˜ì„¸ìš”. 
+-- ì¡°ê±´2) emp_office_info í…Œì´ë¸”ì—ëŠ” employee_id, hire_date, salary, commission_pct,manager_id, department_idê°€ ì €ì¥ë˜ë„ë¡ í•˜ì„¸ìš”.
 create table personal_info as select employee_id, first_name, last_name, email,phone_number from employees where 1=2;
 create table office_info as select employee_id, hire_date, salary, commission_pct,manager_id, department_id from employees where 1=2;
 
@@ -168,12 +168,12 @@ insert all
     into personal_info values(employee_id,first_name,last_name,email,phone_number)
     into office_info values(employee_id,	hire_date,	salary,	commission_pct,	manager_id,	department_id)
 select * from employees;
---8. Employees Å×ÀÌºíÀÇ »ç¿øµé Á¤º¸¸¦ ¾Æ·¡ÀÇ µÎ Å×ÀÌºí¿¡ ³ª´² ÀúÀåÇÏ¼¼¿ä. 
---Á¶°Ç1) º¸³Ê½º°¡ ÀÖ´Â »ç¿øµéÀÇ Á¤º¸´Â emp_comm Å×ÀÌºí¿¡ ÀúÀåÇÏ¼¼¿ä. 
---Á¶°Ç2) º¸³Ê½º°¡ ¾ø´Â »ç¿øµéÀÇ Á¤º¸´Â emp_nocomm Å×ÀÌºí¿¡ ÀúÀåÇÏ¼¼¿ä.
+--8. Employees í…Œì´ë¸”ì˜ ì‚¬ì›ë“¤ ì •ë³´ë¥¼ ì•„ë˜ì˜ ë‘ í…Œì´ë¸”ì— ë‚˜ëˆ  ì €ì¥í•˜ì„¸ìš”. 
+--ì¡°ê±´1) ë³´ë„ˆìŠ¤ê°€ ìˆëŠ” ì‚¬ì›ë“¤ì˜ ì •ë³´ëŠ” emp_comm í…Œì´ë¸”ì— ì €ì¥í•˜ì„¸ìš”. 
+--ì¡°ê±´2) ë³´ë„ˆìŠ¤ê°€ ì—†ëŠ” ì‚¬ì›ë“¤ì˜ ì •ë³´ëŠ” emp_nocomm í…Œì´ë¸”ì— ì €ì¥í•˜ì„¸ìš”.
 CREATE	TABLE	emp_comm	AS	SELECT	*	FROM	employees	WHERE	1=2;
 CREATE	TABLE	emp_nocomm	AS	SELECT	*	FROM	employees	WHERE	1=2;
---°ª ³Ö±â
+--ê°’ ë„£ê¸°
 insert all 
 when commission_pct is null then 
 into emp_comm values(employee_id, first_name, last_name,email,phone_number,hire_date,job_id,salary,commission_pct,manager_id,department_id)
@@ -184,34 +184,34 @@ select * from employees;
 
 
 --ch 9 transection
--- 1. ½Ç½ÀÀ» À§ÇØ EMPLOYEES Å×ÀÌºíÀÇ »çº» Å×ÀÌºíÀ» »ı¼ºÇÏ¼¼¿ä. »çº» Å×ÀÌºíÀÇ ÀÌ¸§Àº EMP_TEMPÀÔ´Ï´Ù.
+-- 1. ì‹¤ìŠµì„ ìœ„í•´ EMPLOYEES í…Œì´ë¸”ì˜ ì‚¬ë³¸ í…Œì´ë¸”ì„ ìƒì„±í•˜ì„¸ìš”. ì‚¬ë³¸ í…Œì´ë¸”ì˜ ì´ë¦„ì€ EMP_TEMPì…ë‹ˆë‹¤.
 create table EMP_TEMP as select * from employees;
--- 2. EMP_TEMP Å×ÀÌºí¿¡¼­ 20¹ø ºÎ¼­ »ç¿øÀÇ Á¤º¸¸¦ »èÁ¦ÇÏ°í ·Ñ¹é ÁöÁ¡À» »ı¼ºÇÏ¼¼¿ä. ·Ñ¹é ÁöÁ¡ÀÇ ÀÌ¸§Àº SVPNT_DEL_20¿©¾ß ÇÕ´Ï´Ù.
+-- 2. EMP_TEMP í…Œì´ë¸”ì—ì„œ 20ë²ˆ ë¶€ì„œ ì‚¬ì›ì˜ ì •ë³´ë¥¼ ì‚­ì œí•˜ê³  ë¡¤ë°± ì§€ì ì„ ìƒì„±í•˜ì„¸ìš”. ë¡¤ë°± ì§€ì ì˜ ì´ë¦„ì€ SVPNT_DEL_20ì—¬ì•¼ í•©ë‹ˆë‹¤.
 delete from EMP_TEMP where department_id = 20;
 savepoint SVPNT_DEL_20;
--- 3. 50¹øºÎ¼­ÀÇ »ç¿øÀÇ Á¤º¸¸¦ »èÁ¦ÇÏ°í ·Ñ¹é ÁöÁ¡À» »ı¼ºÇÏ¼¼¿ä. ·Ñ¹é ÁöÁ¡ÀÇ ÀÌ¸§Àº SVPNT_DEL_50¿©¾ß ÇÕ´Ï´Ù.
+-- 3. 50ë²ˆë¶€ì„œì˜ ì‚¬ì›ì˜ ì •ë³´ë¥¼ ì‚­ì œí•˜ê³  ë¡¤ë°± ì§€ì ì„ ìƒì„±í•˜ì„¸ìš”. ë¡¤ë°± ì§€ì ì˜ ì´ë¦„ì€ SVPNT_DEL_50ì—¬ì•¼ í•©ë‹ˆë‹¤.
 delete from EMP_TEMP where department_id = 50;
 SAVEPOINT	SVPNT_DEL_50;
--- 4. 60¹ø ºÎ¼­ÀÇ »ç¿ø Á¤º¸¸¦ »èÁ¦ÇÏ¼¼¿ä. 
+-- 4. 60ë²ˆ ë¶€ì„œì˜ ì‚¬ì› ì •ë³´ë¥¼ ì‚­ì œí•˜ì„¸ìš”. 
 delete from EMP_TEMP where department_id = 60;
---5. ¾ÕÀÇ 60¹ø ºÎ¼­ÀÇ »ç¿ø Á¤º¸¸¦ »èÁ¦Çß´ø ÀÛ¾÷À» Ãë¼ÒÇÏ¼¼¿ä. ±× ÀÌÀü ÀÛ¾÷Àº Ãë¼ÒÇÏ¸é ¾ÈµË´Ï´Ù.
+--5. ì•ì˜ 60ë²ˆ ë¶€ì„œì˜ ì‚¬ì› ì •ë³´ë¥¼ ì‚­ì œí–ˆë˜ ì‘ì—…ì„ ì·¨ì†Œí•˜ì„¸ìš”. ê·¸ ì´ì „ ì‘ì—…ì€ ì·¨ì†Œí•˜ë©´ ì•ˆë©ë‹ˆë‹¤.
 rollback to savepoint SVPNT_DEL_50;
 
 select * from EMP_TEMP where department_id = 60;
 
---10Àå
---1.1. ÀÌ¸§ ¸¸µå´Â ±ÔÄ¢
+--10ì¥
+--1.1. ì´ë¦„ ë§Œë“œëŠ” ê·œì¹™
 create table "TEST" (c1 VARCHAR2(1));
 insert into "TEST" VALUES('X');
 --CREATE TABLE
---DEPTNO(¼ıÀÚ2ÀÚ¸®),DNAME(¹®ÀÚ 14ÀÚ¸®),LOC 3°³(¹®ÀÚ 13ÀÚ¸®)ÀÇ ¿­À» »ı¼º
+--DEPTNO(ìˆ«ì2ìë¦¬),DNAME(ë¬¸ì 14ìë¦¬),LOC 3ê°œ(ë¬¸ì 13ìë¦¬)ì˜ ì—´ì„ ìƒì„±
 create table dept(
     deptno NUMBER(2),
     dname VARCHAR2(14),
     loc VARCHAR2(13) );
--- Å×ÀÌºí ±¸Á¶ DESCRIBE ¸í·É¾î »ç¿ëÇÏ¿© Å×ÀÌºíÀÇ »ı¼ºÀ» È®ÀÎ
+-- í…Œì´ë¸” êµ¬ì¡° DESCRIBE ëª…ë ¹ì–´ ì‚¬ìš©í•˜ì—¬ í…Œì´ë¸”ì˜ ìƒì„±ì„ í™•ì¸
 DESCRIBE dept
---DDL ¹®ÀåÀ¸·Î Å×ÀÌºí »ı¼º > ÀÚµ¿À¸·Î Ä¿¹Ô
+--DDL ë¬¸ì¥ìœ¼ë¡œ í…Œì´ë¸” ìƒì„± > ìë™ìœ¼ë¡œ ì»¤ë°‹
 create table emp(
     empno number(4,0),
     ename varchar2(10),
@@ -223,76 +223,76 @@ create table emp(
     deptno number(2,0)
 );
 
---¼­ºêÄõ¸®¸¦ »ç¿ëÇÑ Å×ÀÌºí »ı¼º
--- SELECT ÇÑ °á°ú´ë·Î Å×ÀÌºíÀÇ ±¸Á¶¸¦ »ı¼ºÇÏ°í µ¥ÀÌÅÍµµ ÀúÀå
+--ì„œë¸Œì¿¼ë¦¬ë¥¼ ì‚¬ìš©í•œ í…Œì´ë¸” ìƒì„±
+-- SELECT í•œ ê²°ê³¼ëŒ€ë¡œ í…Œì´ë¸”ì˜ êµ¬ì¡°ë¥¼ ìƒì„±í•˜ê³  ë°ì´í„°ë„ ì €ì¥
 create table em2 as select * from employees;
 select count(*) from em2;
 
---Å×ÀÌºí ±¸Á¶¸¸ º¯°æ
+--í…Œì´ë¸” êµ¬ì¡°ë§Œ ë³€ê²½
 --alter tabel
 create table emp_dept50
 as select employee_id,first_name,salary*12 as ann_sal, hire_date
 from employees
 where department_id = 50;
 
---add ÀıÀ» ÀÌ¿ëÇÏ¿© »õ·Î¿î ¿­À» Ãß°¡
+--add ì ˆì„ ì´ìš©í•˜ì—¬ ìƒˆë¡œìš´ ì—´ì„ ì¶”ê°€
 alter table emp_dept50
 add (job varchar2(10));
 
---È®ÀÎ
+--í™•ì¸
 select * from emp_dept50;
 
--- ¿­ ¼öÁ¤
---frist_name ¿­ÀÇ Å©±â¸¦ º¯°æ
+-- ì—´ ìˆ˜ì •
+--frist_name ì—´ì˜ í¬ê¸°ë¥¼ ë³€ê²½
 alter table emp_dept50
 modify (first_name VARCHAR2(30));
---¿­ Å©±â ÁÙÀÌ±â
+--ì—´ í¬ê¸° ì¤„ì´ê¸°
 alter table emp_dept50
 modify (first_name varchar2(10));
 
---job_id ¿­ »èÁ¦
+--job_id ì—´ ì‚­ì œ
 alter table emp_dept50
 drop column job;
 
 desc emp_dept50;
 
---¿­ ÀÌ¸§ º¯°æ
+--ì—´ ì´ë¦„ ë³€ê²½
 alter table emp_dept50
 rename column job to job_id;
 
--- set unused¿É¼Ç°ú drop unused ¿É¼Ç
+-- set unusedì˜µì…˜ê³¼ drop unused ì˜µì…˜
 alter table emp_Dept50 set unused (first_name);
 --check
 desc emp_dept50;
 
---drop unused columns : Å×ÀÌºíÀÇ »ç¿ëX ¿­¿¡¼­ ¿©ºĞÀÇ µğ½ºÅ© °ø°£À» È¸¼öÇÒ °æ¿ì ÀÌ ¸í·É¹® »ç¿ë
--- Å×ÀÌºí¿¡¼­ »ç¿ëX ¿­ÀÌ ¾øÀ¸¸é ¿À·ù ¹ß»ıX ¸í·É¹® ¹İÈ¯
+--drop unused columns : í…Œì´ë¸”ì˜ ì‚¬ìš©X ì—´ì—ì„œ ì—¬ë¶„ì˜ ë””ìŠ¤í¬ ê³µê°„ì„ íšŒìˆ˜í•  ê²½ìš° ì´ ëª…ë ¹ë¬¸ ì‚¬ìš©
+-- í…Œì´ë¸”ì—ì„œ ì‚¬ìš©X ì—´ì´ ì—†ìœ¼ë©´ ì˜¤ë¥˜ ë°œìƒX ëª…ë ¹ë¬¸ ë°˜í™˜
 alter table emp_dept50 drop unused columns;
--- set unused Á¤º¸´Â user_unused_col_tabs ¶ó´Â µñ¼Å³Ê¸® ºä¿¡ ÀúÀåµÇ¾î ÀÖÀ½
---set used Á¸ÀçX ÀÏ°ú½Ã°£¿¡ set unused·Î »ç¿ëÇÒ ¼ö X ÁöÁ¤>ÀÏ°ú½Ã°£ ÀÌÈÄ¿¡´Â drop unused columns ¸í·ÉÀ» ½ÇÇàÇØ¼­ ÇØ´ç ¿­À» »èÁ¦
--- alter table ±¸ºĞÀº µÇµ¹¸± ¼ö X, alter table ±¸¹®À» ½ÇÇà½ÃÅ°¸é ÇöÀç Æ®·£Àè¼ÇÀ» commit
+-- set unused ì •ë³´ëŠ” user_unused_col_tabs ë¼ëŠ” ë”•ì…”ë„ˆë¦¬ ë·°ì— ì €ì¥ë˜ì–´ ìˆìŒ
+--set used ì¡´ì¬X ì¼ê³¼ì‹œê°„ì— set unusedë¡œ ì‚¬ìš©í•  ìˆ˜ X ì§€ì •>ì¼ê³¼ì‹œê°„ ì´í›„ì—ëŠ” drop unused columns ëª…ë ¹ì„ ì‹¤í–‰í•´ì„œ í•´ë‹¹ ì—´ì„ ì‚­ì œ
+-- alter table êµ¬ë¶„ì€ ë˜ëŒë¦´ ìˆ˜ X, alter table êµ¬ë¬¸ì„ ì‹¤í–‰ì‹œí‚¤ë©´ í˜„ì¬ íŠ¸ëœì­ì…˜ì„ commit
 
--- °´Ã¼ ÀÌ¸§ º¯°æ
+-- ê°ì²´ ì´ë¦„ ë³€ê²½
 rename emp_dept50 to employees_dept50;
--- Å×ÀÌºí »èÁ¦
+-- í…Œì´ë¸” ì‚­ì œ
 create table emp_dept50
 as 
     select employee_id, first_name,salary*12 as ann_sal, hire_date
     from employees
     where department_id = 50;
 
--- addÀı ÀÌ¿ëÇØ¼­ »õ·Î¿î ¿­ Ãß°¡
+-- addì ˆ ì´ìš©í•´ì„œ ìƒˆë¡œìš´ ì—´ ì¶”ê°€
 alter table emp_dept50
 add(job VARCHAR2(10));
 --check
 select * from emp_dept50;
---Å×ÀÌºí »èÁ¦
+--í…Œì´ë¸” ì‚­ì œ
 drop table employees_dept50;
--- Å×ÀÌºí ÀüÃ¼ »èÁ¦
+-- í…Œì´ë¸” ì „ì²´ ì‚­ì œ
 truncate table emp2;
 drop table member;
---¿¬½À¹®Á¦
---1. È¸¿ø Á¤º¸¸¦ ÀúÀåÇÏ´Â Å×ÀÌºí(member)¸¦ »ı¼ºÇÏ½Ã¿À
+--ì—°ìŠµë¬¸ì œ
+--1. íšŒì› ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”(member)ë¥¼ ìƒì„±í•˜ì‹œì˜¤
 create table member 
    (userid VARCHAR2(15) NOT NULL,
    name VARCHAR2(20) NOT NULL, 
@@ -302,51 +302,51 @@ create table member
 --check
 select * from member;
 
---2. »ç¿ëÀÚ¾ÆÀÌµğ, ÀÌ¸§, ºñ¹Ğ¹øÈ£, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÀ» ÀúÀåÇÏ´Â Äõ¸®¸¦ ÀÛ¼ºÇÏ¼¼¿ä. 
---- user123, »ç¿ëÀÚ, a1234567890, 011-234-5678, user@user.com
+--2. ì‚¬ìš©ìì•„ì´ë””, ì´ë¦„, ë¹„ë°€ë²ˆí˜¸, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì„ ì €ì¥í•˜ëŠ” ì¿¼ë¦¬ë¥¼ ì‘ì„±í•˜ì„¸ìš”. 
+--- user123, ì‚¬ìš©ì, a1234567890, 011-234-5678, user@user.com
 INSERT INTO 
     member(userid, name, password, phone, email) 
-    values('user123','»ç¿ëÀÚ','a1234567890', '011-234-5678', 'user@user.com');
+    values('user123','ì‚¬ìš©ì','a1234567890', '011-234-5678', 'user@user.com');
 --check
 select * from member;
---3. »ç¿ëÀÚ¾ÆÀÌµğ°¡ user123ÀÎ »ç¿ëÀÚÀÇ ¸ğµç Á¤º¸¸¦ Á¶È¸ÇÏ¼¼¿ä.
+--3. ì‚¬ìš©ìì•„ì´ë””ê°€ user123ì¸ ì‚¬ìš©ìì˜ ëª¨ë“  ì •ë³´ë¥¼ ì¡°íšŒí•˜ì„¸ìš”.
 select * from member where userid = 'user123';
 
---4. »ç¿ëÀÚ¾ÆÀÌµğ°¡ user123ÀÎ »ç¿ëÀÚÀÇ ÀÌ¸§, ºñ¹Ğ¹øÈ£, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÀ» ¼öÁ¤ÇÏ¼¼¿ä. 
--- È«±æµ¿, a1234, 011-222-3333, user@user.co.kr
+--4. ì‚¬ìš©ìì•„ì´ë””ê°€ user123ì¸ ì‚¬ìš©ìì˜ ì´ë¦„, ë¹„ë°€ë²ˆí˜¸, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì„ ìˆ˜ì •í•˜ì„¸ìš”. 
+-- í™ê¸¸ë™, a1234, 011-222-3333, user@user.co.kr
 update member
-    set name = 'È«±æµ¿', password='a123', phone = '011-222-3333', email = 'user@user.co.kr'
+    set name = 'í™ê¸¸ë™', password='a123', phone = '011-222-3333', email = 'user@user.co.kr'
     where userid = 'user123';
 --check
 select * from member;
 
---5. »ç¿ëÀÚ¾ÆÀÌµğ°¡ user123ÀÌ°í ºñ¹Ğ¹øÈ£°¡ a1234ÀÎ È¸¿øÀÇ Á¤º¸¸¦ »èÁ¦ÇÏ¼¼¿ä.
+--5. ì‚¬ìš©ìì•„ì´ë””ê°€ user123ì´ê³  ë¹„ë°€ë²ˆí˜¸ê°€ a1234ì¸ íšŒì›ì˜ ì •ë³´ë¥¼ ì‚­ì œí•˜ì„¸ìš”.
 delete from member
     where userid = 'user123' and password = 'a1234';
 
---6. È¸¿ø Á¤º¸¸¦ ÀúÀåÇÏ´Â Å×ÀÌºí(member)ÀÇ ¸ğµç ÇàÀ» »èÁ¦ÇÏ¼¼¿ä. TRUNCATE ±¸¹®À» ÀÌ¿ëÇÏ¼¼¿ä.
+--6. íšŒì› ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”(member)ì˜ ëª¨ë“  í–‰ì„ ì‚­ì œí•˜ì„¸ìš”. TRUNCATE êµ¬ë¬¸ì„ ì´ìš©í•˜ì„¸ìš”.
 truncate table member;
 
---7. È¸¿ø Á¤º¸¸¦ ÀúÀåÇÏ´Â Å×ÀÌºí(member)À» »èÁ¦ÇÏ¼¼¿ä.
+--7. íšŒì› ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”(member)ì„ ì‚­ì œí•˜ì„¸ìš”.
 drop table member;
 
---ch 11Á¦¾àÁ¶°Ç constraints
---1. Á¦¾àÁ¶°ÇÀÌ¶õ?
---user_constraints µ¥ÀÌÅÍ µñ¼Å³Ê¸®¿¡¼­ Å×ÀÌºí¿¡ Á¤ÀÇµÈ Á¦¾àÁ¶°ÇÀ» º¼ ¼öÀÖ´Ù.
+--ch 11ì œì•½ì¡°ê±´ constraints
+--1. ì œì•½ì¡°ê±´ì´ë€?
+--user_constraints ë°ì´í„° ë”•ì…”ë„ˆë¦¬ì—ì„œ í…Œì´ë¸”ì— ì •ì˜ëœ ì œì•½ì¡°ê±´ì„ ë³¼ ìˆ˜ìˆë‹¤.
 select * from user_constraints;
---´ÙÀ½ ±¸¹®Àº ¾Æ·¡ Á¶°Ç¿¡ ¸Â´Â Å×ÀÌºíÀ» »ı¼ºÇÕ´Ï´Ù. 
--- »ç¿ø¹øÈ£, ÀÌ¸§, ±Ş¿©, ºÎ¼­¹øÈ£¸¦ ÀúÀåÇÏ´Â Å×ÀÌºíÀ» »ı¼ºÇØ¾ß ÇÕ´Ï´Ù. 
--- »ç¿ø¹øÈ£´Â PK, ÀÌ¸§Àº Not Null, ±Ş¿©´Â 10,000 ÀÌÇÏ, ºÎ¼­¹øÈ£´Â departments Å×ÀÌºíÀÇ department_id¿­À» ÂüÁ¶ÇØ¼­ ÀúÀåÇÕ´Ï´Ù. 
--- Å×ÀÌºí ÀÌ¸§°ú ¿­ ÀÌ¸§, ±×¸®°í ¿­ÀÇ Å¸ÀÔÀº ÀÓÀÇ·Î ±¸¼ºÇÕ´Ï´Ù.
+--ë‹¤ìŒ êµ¬ë¬¸ì€ ì•„ë˜ ì¡°ê±´ì— ë§ëŠ” í…Œì´ë¸”ì„ ìƒì„±í•©ë‹ˆë‹¤. 
+-- ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”ì„ ìƒì„±í•´ì•¼ í•©ë‹ˆë‹¤. 
+-- ì‚¬ì›ë²ˆí˜¸ëŠ” PK, ì´ë¦„ì€ Not Null, ê¸‰ì—¬ëŠ” 10,000 ì´í•˜, ë¶€ì„œë²ˆí˜¸ëŠ” departments í…Œì´ë¸”ì˜ department_idì—´ì„ ì°¸ì¡°í•´ì„œ ì €ì¥í•©ë‹ˆë‹¤. 
+-- í…Œì´ë¸” ì´ë¦„ê³¼ ì—´ ì´ë¦„, ê·¸ë¦¬ê³  ì—´ì˜ íƒ€ì…ì€ ì„ì˜ë¡œ êµ¬ì„±í•©ë‹ˆë‹¤.
 create table emp4(
     empno number(4) constraint emp4_empno_pk primary key,
     ename varchar2(10) not null,
     sal number(7,2) constraint emp4_sal_ck check(sal<=10000),
     deptno number(2) constraint emp4_Deptno_dept_deptid_fk references departments(department_id));
---´ÙÀ½ ±¸¹®Àº ¾Æ·¡ Á¶°Ç¿¡ ¸Â´Â Å×ÀÌºíÀ» »ı¼ºÇÕ´Ï´Ù. 
--- »ç¿ø¹øÈ£, ÀÌ¸§, ±Ş¿©, ºÎ¼­¹øÈ£¸¦ ÀúÀåÇÏ´Â Å×ÀÌºíÀ» »ı¼ºÇØ¾ß ÇÕ´Ï´Ù.
--- »ç¿ø¹øÈ£´Â PK, ÀÌ¸§Àº NN, ±Ş¿©´Â 10000 ÀÌÇÏ, ºÎ¼­¹øÈ£´Â departments Å×ÀÌºíÀ» ÂüÁ¶ÇØ¼­ ÀúÀåÇÕ´Ï´Ù. 
--- Å×ÀÌºí ÀÌ¸§°ú ¿­ ÀÌ¸§, ±×¸®°í ¿­ÀÇ Å¸ÀÔÀº ÀÓÀÇ·Î ±¸¼ºÇÕ´Ï´Ù.
+--ë‹¤ìŒ êµ¬ë¬¸ì€ ì•„ë˜ ì¡°ê±´ì— ë§ëŠ” í…Œì´ë¸”ì„ ìƒì„±í•©ë‹ˆë‹¤. 
+-- ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”ì„ ìƒì„±í•´ì•¼ í•©ë‹ˆë‹¤.
+-- ì‚¬ì›ë²ˆí˜¸ëŠ” PK, ì´ë¦„ì€ NN, ê¸‰ì—¬ëŠ” 10000 ì´í•˜, ë¶€ì„œë²ˆí˜¸ëŠ” departments í…Œì´ë¸”ì„ ì°¸ì¡°í•´ì„œ ì €ì¥í•©ë‹ˆë‹¤. 
+-- í…Œì´ë¸” ì´ë¦„ê³¼ ì—´ ì´ë¦„, ê·¸ë¦¬ê³  ì—´ì˜ íƒ€ì…ì€ ì„ì˜ë¡œ êµ¬ì„±í•©ë‹ˆë‹¤.
 create table emp5(
     empno number(4),
     ename varchar2(10) not null,
@@ -356,20 +356,20 @@ create table emp5(
     constraint emp5_sal_ck check(sal<=10000),
     constraint emp5_Deptno_dept_deptid_fk 
     foreign key (deptno) references departments(department_id));
---2. Á¦¾àÁ¶°Ç Á¾·ù
---primary key Á¦¾àÁ¶°ÇÀ» Å×ÀÌºí ·¹º§ ¶Ç´Â ¿­ ·¹º§¿¡¼­ Á¤ÀÇ
--- deptno ¿­À» ±âº»Å°(PK)·Î °¡Áö´Â Å×ÀÌºí »ı¼º
+--2. ì œì•½ì¡°ê±´ ì¢…ë¥˜
+--primary key ì œì•½ì¡°ê±´ì„ í…Œì´ë¸” ë ˆë²¨ ë˜ëŠ” ì—´ ë ˆë²¨ì—ì„œ ì •ì˜
+-- deptno ì—´ì„ ê¸°ë³¸í‚¤(PK)ë¡œ ê°€ì§€ëŠ” í…Œì´ë¸” ìƒì„±
 create table depts(
     deptno number(2),
     dname varchar2(14),
     loc varchar2(13),
     constraint depts_dname_uk unique(dname),
     constraint depts_Deptno_pk primary key(deptno));
--- foreign key Á¦¾àÁ¶°ÇÀº ¿­ or Å×ÀÌºí Á¦¾àÁ¶°Ç ·¹º§¿¡¼­ Á¤ÀÇ µÉ ¼ö ÀÕÀ½.
--- Á¶ÇÕ ¿Ü·¡Å°´Â Å×ÀÌºí ·¹º§ Á¤ÀÇ¸¦ »ç¿ëÇÏ¿© »ı¼º.
+-- foreign key ì œì•½ì¡°ê±´ì€ ì—´ or í…Œì´ë¸” ì œì•½ì¡°ê±´ ë ˆë²¨ì—ì„œ ì •ì˜ ë  ìˆ˜ ì‡ìŒ.
+-- ì¡°í•© ì™¸ë˜í‚¤ëŠ” í…Œì´ë¸” ë ˆë²¨ ì •ì˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ìƒì„±.
 
---EMPS Å×ÀÌºíÀÇ DEPTNO¿­¿¡¼­ FOREIGN KEY Á¦¾àÁ¶°ÇÀ» Á¤ÀÇ
---Á¦¾àÁ¶°ÇÀÇ ÀÌ¸§ = EMPS_DEPTS_DEPTNO_FK
+--EMPS í…Œì´ë¸”ì˜ DEPTNOì—´ì—ì„œ FOREIGN KEY ì œì•½ì¡°ê±´ì„ ì •ì˜
+--ì œì•½ì¡°ê±´ì˜ ì´ë¦„ = EMPS_DEPTS_DEPTNO_FK
 create table emps(
     empno number(4),
     ename varchar2(10) not null,
@@ -382,43 +382,43 @@ create table emps(
     constraint emps_empno_pk primary key(empno),
     constraint emps_depts_deptno_fk foreign key (deptno)
     references depts(deptno));
--- emps Å×ÀÌºí ¾È¿¡ À¯È¿ÇÑ »ç¿øÀ¸·Î ÀÌ¹Ì Á¸ÀçÇØ¾ß ÇÏ´Â °ü¸®ÀÚ¸¦ ³ªÅ¸³»´Â EMPS Å×ÀÌºíÀÇ MGR ¿­¿¡ ´ëÇØ¼­ FROEIGN KEY Á¦¾àÁ¶°ÇÀ» Ãß°¡
+-- emps í…Œì´ë¸” ì•ˆì— ìœ íš¨í•œ ì‚¬ì›ìœ¼ë¡œ ì´ë¯¸ ì¡´ì¬í•´ì•¼ í•˜ëŠ” ê´€ë¦¬ìë¥¼ ë‚˜íƒ€ë‚´ëŠ” EMPS í…Œì´ë¸”ì˜ MGR ì—´ì— ëŒ€í•´ì„œ FROEIGN KEY ì œì•½ì¡°ê±´ì„ ì¶”ê°€
 alter table emps
     add constraint emps_mgr_fk
     foreign key(mgr) references emps(empno);
---3. Á¦¾àÁ¶°Ç °ü¸®
---(Ãß°¡)´ÙÀ½ ±¸¹®Àº EMPS Å×ÀÌºí ¾È¿¡ À¯È¿ÇÑ »ç¿øÀ¸·Î ÀÌ¹Ì Á¸ÀçÇØ¾ß ÇÏ´Â °ü¸®ÀÚ¸¦ ³ªÅ¸³»´Â EMPS Å×ÀÌºíÀÇ MGR ¿­¿¡ ´ëÇØ¼­ FOREIGN KEY Á¦¾àÁ¶°ÇÀ» Ãß°¡ÇÕ´Ï´Ù.
+--3. ì œì•½ì¡°ê±´ ê´€ë¦¬
+--(ì¶”ê°€)ë‹¤ìŒ êµ¬ë¬¸ì€ EMPS í…Œì´ë¸” ì•ˆì— ìœ íš¨í•œ ì‚¬ì›ìœ¼ë¡œ ì´ë¯¸ ì¡´ì¬í•´ì•¼ í•˜ëŠ” ê´€ë¦¬ìë¥¼ ë‚˜íƒ€ë‚´ëŠ” EMPS í…Œì´ë¸”ì˜ MGR ì—´ì— ëŒ€í•´ì„œ FOREIGN KEY ì œì•½ì¡°ê±´ì„ ì¶”ê°€í•©ë‹ˆë‹¤.
 alter table emps
     add constraint emps_mgr_rk foreign key(mgr) references emps(empno);
---(Á¶È¸) USER_CONSTRAINTS µ¥ÀÌÅÍ µñ¼Å³Ê¸®¸¦ ÅëÇØ EMPS Å×ÀÌºíÀÇ ¸ğµç Á¦¾àÁ¶°Ç Á¤º¸ Ãâ·Â
+--(ì¡°íšŒ) USER_CONSTRAINTS ë°ì´í„° ë”•ì…”ë„ˆë¦¬ë¥¼ í†µí•´ EMPS í…Œì´ë¸”ì˜ ëª¨ë“  ì œì•½ì¡°ê±´ ì •ë³´ ì¶œë ¥
 select 	constraint_name, constraint_type,status
 from USER_CONSTRAINTS
 where table_name = 'EMPS';
---(»èÁ¦)  EMPS Å×ÀÌºí¿¡¼­ °ü¸®ÀÚÀÇ Á¦¾àÁ¶°ÇÀ» Á¦°Å
+--(ì‚­ì œ)  EMPS í…Œì´ë¸”ì—ì„œ ê´€ë¦¬ìì˜ ì œì•½ì¡°ê±´ì„ ì œê±°
 alter table depts drop primary key cascade;
---DEPTS Å×ÀÌºí¿¡¼­ PRIMARY KEY Á¦¾àÁ¶°ÇÀ» Á¦°ÅÇÏ°í EMPS.DEPTNO¿­¿¡ °ü·ÃµÈ FOREIGN KEY Á¦¾àÁ¶°ÇÀ» »èÁ¦
+--DEPTS í…Œì´ë¸”ì—ì„œ PRIMARY KEY ì œì•½ì¡°ê±´ì„ ì œê±°í•˜ê³  EMPS.DEPTNOì—´ì— ê´€ë ¨ëœ FOREIGN KEY ì œì•½ì¡°ê±´ì„ ì‚­ì œ
 alter table depts drop primary key cascade;
---Á¦¾àÁ¶°ÇÀÌ »èÁ¦µÈ ÈÄ emps Å×ÀÌºí Á¦¾àÁ¶°Ç Ãâ·Â
+--ì œì•½ì¡°ê±´ì´ ì‚­ì œëœ í›„ emps í…Œì´ë¸” ì œì•½ì¡°ê±´ ì¶œë ¥
 SELECT constraint_name, constraint_type, status
 from USER_CONSTRAINTS
 where table_name = 'EMPS';
---´ÙÀ½ ±¸¹®Àº CHECK Á¦¾àÁ¶°ÇÀ» ºñÈ°¼ºÈ­ÇÏ°í µ¥ÀÌÅÍ¸¦ INSERT ÇÕ´Ï´Ù. ±Ş¿©(SAL¿­)´Â
---10000 ÀÌÇÏ¿©¾ß ÇÏ´Â Á¦¾àÁ¶°ÇÀÌ ÀÖÁö¸¸, ºñÈ°¼ºÈ­ÇÑ ´ÙÀ½ INSERT ÇÏ¸é 10000º¸´Ù Å« °ªµµ µ¥ÀÌÅÍº£ÀÌ½º¿¡ Á¤»óÀûÀ¸·Î INSERT°¡ µË´Ï´Ù.
+--ë‹¤ìŒ êµ¬ë¬¸ì€ CHECK ì œì•½ì¡°ê±´ì„ ë¹„í™œì„±í™”í•˜ê³  ë°ì´í„°ë¥¼ INSERT í•©ë‹ˆë‹¤. ê¸‰ì—¬(SALì—´)ëŠ”
+--10000 ì´í•˜ì—¬ì•¼ í•˜ëŠ” ì œì•½ì¡°ê±´ì´ ìˆì§€ë§Œ, ë¹„í™œì„±í™”í•œ ë‹¤ìŒ INSERT í•˜ë©´ 10000ë³´ë‹¤ í° ê°’ë„ ë°ì´í„°ë² ì´ìŠ¤ì— ì •ìƒì ìœ¼ë¡œ INSERTê°€ ë©ë‹ˆë‹¤.
 ALTER TABLE emp4 DISABLE CONSTRAINT	emp4_sal_ck;
 insert into emp4 (empno, ename,sal,deptno)
     values(9999,'KING',20000,10);
 select * from emp4;
---emps4 tableÀÇ sal¿­¿¡ ´ëÇÑ Á¦¾àÁ¶°ÇÀ» ´Ù½Ã È°¼ºÈ­ ÇÏ´Â ±¸¹®
---enable validate ±¸¹®À¸·Î ÀÎÇØ ÀúÀåµÈ °ªµé¿¡ ´ëÇÑ Á¦¾àÁ¶°Ç Ã¼Å©°¡ ÀÌ·ç¾îÁü
--- ¾Õ¿¡¼­ Á¦¾àÁ¶°ÇÀ» ºñÈ°¼ºÈ­ÇÏ°í ÀÔ·ÂÇÑ ÇàÀº check Á¦¾à Á¶°ÇÀ» ¸¸Á·ÇÏÁö ¸øÇÏ¹Ç·Î ¿¡·¯ ¹ß»ı
---ÀúÀåµÈ Á¦¾àÁ¶°ÇÀ» °Ë»çÇÏÁö ¾Ê°í È°¼ºÈ­
+--emps4 tableì˜ salì—´ì— ëŒ€í•œ ì œì•½ì¡°ê±´ì„ ë‹¤ì‹œ í™œì„±í™” í•˜ëŠ” êµ¬ë¬¸
+--enable validate êµ¬ë¬¸ìœ¼ë¡œ ì¸í•´ ì €ì¥ëœ ê°’ë“¤ì— ëŒ€í•œ ì œì•½ì¡°ê±´ ì²´í¬ê°€ ì´ë£¨ì–´ì§
+-- ì•ì—ì„œ ì œì•½ì¡°ê±´ì„ ë¹„í™œì„±í™”í•˜ê³  ì…ë ¥í•œ í–‰ì€ check ì œì•½ ì¡°ê±´ì„ ë§Œì¡±í•˜ì§€ ëª»í•˜ë¯€ë¡œ ì—ëŸ¬ ë°œìƒ
+--ì €ì¥ëœ ì œì•½ì¡°ê±´ì„ ê²€ì‚¬í•˜ì§€ ì•Šê³  í™œì„±í™”
 alter table emp4
 enable novalidate CONSTRAINT emp4_sal_ck;
 
---¿¬½À¹®Á¦
---1. È¸¿ø Á¤º¸¸¦ ÀúÀåÇÏ´Â Å×ÀÌºí(member)À» »ı¼ºÇÏ¼¼¿ä. È¸¿ø Á¤º¸´Â »ç¿ëÀÚ ¾ÆÀÌµğ(15),
---ÀÌ¸§(20), ºñ¹Ğ¹øÈ£(20), ÀüÈ­¹øÈ£(15), ÀÌ¸ŞÀÏ(100)À» Æ÷ÇÔÇØ¾ß ÇÕ´Ï´Ù. °ıÈ£ ¾ÈÀÇ ¼ıÀÚ´Â Å©±âÀÔ´Ï´Ù. 
---È¸¿ø Á¤º¸¸¦ ÀúÀåÇÏ´Â Å×ÀÌºíÀº »ç¿ëÀÚ ¾ÆÀÌµğ¸¦ PK·Î °®½À´Ï´Ù.
+--ì—°ìŠµë¬¸ì œ
+--1. íšŒì› ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”(member)ì„ ìƒì„±í•˜ì„¸ìš”. íšŒì› ì •ë³´ëŠ” ì‚¬ìš©ì ì•„ì´ë””(15),
+--ì´ë¦„(20), ë¹„ë°€ë²ˆí˜¸(20), ì „í™”ë²ˆí˜¸(15), ì´ë©”ì¼(100)ì„ í¬í•¨í•´ì•¼ í•©ë‹ˆë‹¤. ê´„í˜¸ ì•ˆì˜ ìˆ«ìëŠ” í¬ê¸°ì…ë‹ˆë‹¤. 
+--íšŒì› ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”ì€ ì‚¬ìš©ì ì•„ì´ë””ë¥¼ PKë¡œ ê°–ìŠµë‹ˆë‹¤.
 create table member(
     user_id varchar2(15) not null,
     ename varchar2(10) not null,
@@ -428,13 +428,13 @@ create table member(
 alter table member
 add constraint member_user_id_pk PRIMARY KEY(user_id)
 
---2. ´ÙÀ½ Å×ÀÌºí ±¸¹®À» ¼öÁ¤ÇØ¼­ Á¦¾àÁ¶°ÇÀ» Ãß°¡ÇÏ¼¼¿ä. 
--- DEPT Å×ÀÌºíÀÇ DEPTNO ¿­Àº ÁÖÅ°(primary key) ¿­ÀÌ¾î¾ß ÇÕ´Ï´Ù. 
--- Á¦¾àÁ¶°ÇÀÇ ÀÌ¸§Àº pk_dept·Î ÇÏ¼¼¿ä. 
--- EMP Å×ÀÌºíÀÇ EMPNO ¿­Àº ÁÖÅ°(primary key) ¿­ÀÌ¾î¾ß ÇÕ´Ï´Ù. 
--- Á¦¾àÁ¶°ÇÀÇ ÀÌ¸§Àº pk_emp·Î ÇÏ¼¼¿ä. 
--- EMP Å×ÀÌºíÀÇ DEPTNO ¿­Àº DEPT Å×ÀÌºíÀÇ DEPTNO ¿­À» ÂüÁ¶ÇÏ´Â ¿Ü·¡Å°(foreign key)¿©¾ß ÇÕ´Ï´Ù. 
--- Á¦¾àÁ¶°ÇÀÇ ÀÌ¸§Àº fk_deptno·Î ÇÏ¼¼¿ä.
+--2. ë‹¤ìŒ í…Œì´ë¸” êµ¬ë¬¸ì„ ìˆ˜ì •í•´ì„œ ì œì•½ì¡°ê±´ì„ ì¶”ê°€í•˜ì„¸ìš”. 
+-- DEPT í…Œì´ë¸”ì˜ DEPTNO ì—´ì€ ì£¼í‚¤(primary key) ì—´ì´ì–´ì•¼ í•©ë‹ˆë‹¤. 
+-- ì œì•½ì¡°ê±´ì˜ ì´ë¦„ì€ pk_deptë¡œ í•˜ì„¸ìš”. 
+-- EMP í…Œì´ë¸”ì˜ EMPNO ì—´ì€ ì£¼í‚¤(primary key) ì—´ì´ì–´ì•¼ í•©ë‹ˆë‹¤. 
+-- ì œì•½ì¡°ê±´ì˜ ì´ë¦„ì€ pk_empë¡œ í•˜ì„¸ìš”. 
+-- EMP í…Œì´ë¸”ì˜ DEPTNO ì—´ì€ DEPT í…Œì´ë¸”ì˜ DEPTNO ì—´ì„ ì°¸ì¡°í•˜ëŠ” ì™¸ë˜í‚¤(foreign key)ì—¬ì•¼ í•©ë‹ˆë‹¤. 
+-- ì œì•½ì¡°ê±´ì˜ ì´ë¦„ì€ fk_deptnoë¡œ í•˜ì„¸ìš”.
 create table dept(
     deptno number(2),
     dname VARCHAR2(14),

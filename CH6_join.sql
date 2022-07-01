@@ -1,13 +1,13 @@
---°øºÎÇÏ±â
+--ê³µë¶€í•˜ê¸°
 
---103¹ø »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­ ÀÌ¸§ Ãâ·Â
+--103ë²ˆ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œ ì´ë¦„ ì¶œë ¥
 select e.first_name as NAME, d.department_name AS department
 from employees e
 join departments d
 on e.department_id = d.department_id
 where employee_id = 103;
 
--- 103¹ø »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­ ÀÌ¸§, ±×¸®°í ÁÖ¼Ò Ãâ·Â
+-- 103ë²ˆ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œ ì´ë¦„, ê·¸ë¦¬ê³  ì£¼ì†Œ ì¶œë ¥
 select e.first_name as name,d.department_name as department,
 l.street_address || ', '|| l.city || ', '||l.state_province as address
 from employees e
@@ -17,13 +17,13 @@ join locations l
 on d.location_id = l.location_id
 where employee_id = 103;
 
---103¹ø »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­ ÀÌ¸§
+--103ë²ˆ ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œ ì´ë¦„
 select e.first_name as name, d.department_name as department
 from employees e
 join departments d
 on e.department_id = d.department_id and employee_id = 103;
 
---°°Àº °á°ú ´Ù¸¥ ÄÚµå
+--ê°™ì€ ê²°ê³¼ ë‹¤ë¥¸ ì½”ë“œ
 select e.first_name as name, d.department_name as department, 
 l.street_address || ', '||l.city||', '||l.state_province as address
 from employees e
@@ -40,7 +40,7 @@ on e.department_id = d.department_id
 join locations l
 on d.location_id=l.location_id and employee_id=103;
 
---¸ğµç »ç¿ø¿¡ ´ëÇØ Á÷¹« ÀÌ·ÂÀÌ ¾ø´Â Á¤º¸µµ Ãâ·Â
+--ëª¨ë“  ì‚¬ì›ì— ëŒ€í•´ ì§ë¬´ ì´ë ¥ì´ ì—†ëŠ” ì •ë³´ë„ ì¶œë ¥
 select e.employee_id, e.first_name, e.hire_date,
 j.start_date,j.end_date, j.job_id,j.department_id
 from employees e
@@ -48,23 +48,23 @@ left outer join job_history j
 on e.employee_id = j.employee_id
 order by e.employee_id;
 
---¿¬½À¹®Á¦
+--ì—°ìŠµë¬¸ì œ
 --Using table - ENPLOYEES/DEPARTMENTS/LOCATEION/JOBS
---1. join »ç¿øÀÇ ÀÌ¸§°ú ºÎ¼­ÀÌ¸§, ºÎ¼­À§Ä¡(city)
+--1. join ì‚¬ì›ì˜ ì´ë¦„ê³¼ ë¶€ì„œì´ë¦„, ë¶€ì„œìœ„ì¹˜(city)
 --ver.ORACLE JOIN
 select e.first_name,d.department_name,l.city
 from employees e,departments d,locations l
 where first_name = 'John'
 and e.department_id = d.department_id
 and d.location_id = l.location_id;
---ver ¾È½Ã Á¶ÀÎ:
+--ver ì•ˆì‹œ ì¡°ì¸:
 select e.first_name, d.department_name, l.city
 from employees e
 join departments d on e.department_id = d.department_id
 join locations l on d.location_id=l.location_id
 where first_name='John';
 
---2. 103¹ø »ç¿øÀÇ »ç¿ø¹øÈ£, ÀÌ¸§, ±Ş¿©, ¸Å´ÏÀúÀÌ¸§, ¸Å´ÏÀú ºÎ¼­ÀÌ¸§À» Ãâ·ÂÇÏ¼¼¿ä(ver ¾È½ÃÁ¶ÀÎ)
+--2. 103ë²ˆ ì‚¬ì›ì˜ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ê¸‰ì—¬, ë§¤ë‹ˆì €ì´ë¦„, ë§¤ë‹ˆì € ë¶€ì„œì´ë¦„ì„ ì¶œë ¥í•˜ì„¸ìš”(ver ì•ˆì‹œì¡°ì¸)
 select e.employee_id, e.first_name,	e.salary, m.first_name,	
 d.department_name
 from employees e
@@ -72,14 +72,14 @@ join employees m on e.manager_id = m.employee_id
 join departments d on m.department_id = d.department_id
 where e.employee_id = 103;
 
---3. 90¹ø »ç¿øµéÀÇ »ç¹ø, ÀÌ¸§, ±Ş¿©, ¸Å´ÏÀúÀÌ¸§, ¸Å´ÏÀú±Ş¿©, ¸Å´ÏÀúºÎ¼­ÀÌ¸§À» Ãâ·Â
+--3. 90ë²ˆ ì‚¬ì›ë“¤ì˜ ì‚¬ë²ˆ, ì´ë¦„, ê¸‰ì—¬, ë§¤ë‹ˆì €ì´ë¦„, ë§¤ë‹ˆì €ê¸‰ì—¬, ë§¤ë‹ˆì €ë¶€ì„œì´ë¦„ì„ ì¶œë ¥
 --ver ORCLE
 select e.employee_id, e.first_name,e.salary,m.first_name,m.salary,d.department_id
 from employees e, employees m,departments d
 where e.manager_id = m.employee_id(+)
 and m.department_id = d.department_id(+)
 and e.department_id =90;
---ver ¾È½Ã Á¶ÀÎ
+--ver ì•ˆì‹œ ì¡°ì¸
 select e.employee_id, e.first_name,e.salary,m.first_name,m.salary,d.department_id
 from employees e
 left join employees m on e.manager_id = m.employee_id
@@ -87,14 +87,14 @@ left join departments d on m.department_id = d.department_id
 where e.department_id=90;
 
 
---4.103¹ø»ç¿øÀÌ ±Ù¹«ÇÏ´Â µµ½Ã´À ? ver ¾È½ÃÁ¶ÀÎ
+--4.103ë²ˆì‚¬ì›ì´ ê·¼ë¬´í•˜ëŠ” ë„ì‹œëŠ ? ver ì•ˆì‹œì¡°ì¸
 select e.employee_id, l.city
 from employees e
 join departments d on d.department_id = d.department_id
 join locations l on d.location_id = l.location_id
 where e.employee_id = 103;
 
---5. »ç¿ø¹øÈ£°¡ 103ÀÎ »ç¿øÀÇ ºÎ¼­À§Ä¡(city)¿Í ¸Å´ÏÀúÀÇ Á÷¹«ÀÌ¸§(job_title)À» Ãâ·ÂÇÏ½Ã¿À ver¾È½ÃÁ¶ÀÎ
+--5. ì‚¬ì›ë²ˆí˜¸ê°€ 103ì¸ ì‚¬ì›ì˜ ë¶€ì„œìœ„ì¹˜(city)ì™€ ë§¤ë‹ˆì €ì˜ ì§ë¬´ì´ë¦„(job_title)ì„ ì¶œë ¥í•˜ì‹œì˜¤ verì•ˆì‹œì¡°ì¸
 select l.city as "department Location", j.job_title as "Manager's JOb"
 from employees e
 join departments d on e.department_id = d.department_id
@@ -103,8 +103,8 @@ join employees m on e.manager_id = m.employee_id
 join jobs j on m.job_id = j.job_id
 where e.employee_id = 103;
 
---6. »ç¿øÀÇ ¸ğµç Á¤º¸¸¦ Á¶È¸ÇÏ´Â Äõ¸®¹®À» ÀÛ¼ºÇÏ½Ã¿À
--- »ç¿øÀÇ ºÎ¼­¹øÈ£´Â ºÎ¼­ÀÌ¸§À¸·Î, Á÷¹«¾ÆÀÌµğ´Â Á÷¹«ÀÌ¸§À¸·Î ¸Å´ÏÀú ¾ÆÀÌµğ´Â ¸Å´ÏÀú ÀÌ¸§À¸·Î Ãâ·ÂÇÏ¼¼¿ä
+--6. ì‚¬ì›ì˜ ëª¨ë“  ì •ë³´ë¥¼ ì¡°íšŒí•˜ëŠ” ì¿¼ë¦¬ë¬¸ì„ ì‘ì„±í•˜ì‹œì˜¤
+-- ì‚¬ì›ì˜ ë¶€ì„œë²ˆí˜¸ëŠ” ë¶€ì„œì´ë¦„ìœ¼ë¡œ, ì§ë¬´ì•„ì´ë””ëŠ” ì§ë¬´ì´ë¦„ìœ¼ë¡œ ë§¤ë‹ˆì € ì•„ì´ë””ëŠ” ë§¤ë‹ˆì € ì´ë¦„ìœ¼ë¡œ ì¶œë ¥í•˜ì„¸ìš”
 select e.employee_id, e.first_name, e.last_name, e.email,e.phone_number, e.hire_date, j.job_title,
 e.salary,e.commission_pct,m.first_name as MANAGER_FIRST_NAME, m.last_name as MANAGER_LAST_NAME,
 d.department_name
@@ -113,9 +113,9 @@ left join departments d on e.department_id = d.department_id
 join jobs j on e.job_id=j.job_id
 left join employees m on e.manager_id = m.employee_id;
 
---7. ¿À·ù°¡ ÀÖ´Â ¶óÀÎÀº?
+--7. ì˜¤ë¥˜ê°€ ìˆëŠ” ë¼ì¸ì€?
 select employee_id, 
-e.first_name, --employees.first_nameÀº ¿À·ù°¡ ³ª¿È
+e.first_name, --employees.first_nameì€ ì˜¤ë¥˜ê°€ ë‚˜ì˜´
 e.department_id,
 d.department_id
 from employees e, departments d
